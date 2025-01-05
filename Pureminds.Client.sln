@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pureminds.Client", "Pureminds.Client\Pureminds.Client.csproj", "{B25F442B-D59E-4917-85EB-382F2063E244}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B25F442B-D59E-4917-85EB-382F2063E244}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B25F442B-D59E-4917-85EB-382F2063E244}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B25F442B-D59E-4917-85EB-382F2063E244}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B25F442B-D59E-4917-85EB-382F2063E244}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3A890925-ADAA-4F81-BA03-671BB2FDE566}
+	EndGlobalSection
+EndGlobal

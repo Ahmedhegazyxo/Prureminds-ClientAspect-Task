@@ -1,0 +1,72 @@
+﻿/*TECH-CAROUSEL*/
+.carousel-section {
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    padding: 10px 10px;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    gap: 50px;
+    background-color: #02021C;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.technologies-carousel {
+    animation: scroll-right 70s linear infinite;
+}
+
+@keyframes scroll-right {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.carousel-section:hover .technologies-carousel {
+    animation-play-state: paused;
+}
+.subtext {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: normal;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.home-page-section {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.highlight {
+    color: #00CEFF;
+}
+
+.home-paragraph-extension {
+    padding: 120px 0 0 105px;
+    width: 50vw;
+}
+
+.home-paragraph {
+    width: 50vw;
+    padding: 50px 0 0 0;
+}
+
+.zoom-in-effect {
+    transform: scale(0.9);
+    animation: zoomIn 1.5s forwards;
+}
+
+@keyframes zoomIn {
+    to {
+        transform: scale(1);
+    }
+}

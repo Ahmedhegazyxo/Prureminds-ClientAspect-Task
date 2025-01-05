@@ -1,0 +1,68 @@
+﻿body 
+{
+}
+.project-header {
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    padding: 10px 10px;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    gap: 50px;
+    background-color: #02021C;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.project-header-section
+{
+    width : 33.33vw;
+    gap : 20px;
+}
+.project-header-nav {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0 0 0;
+}
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.nav-links a {
+    text-decoration: none; 
+    color: white; 
+    font-size: 20px;
+    font-weight: 500; 
+    transition: color 0.3s ease-in-out; 
+}
+    .nav-links a:hover {
+        color: #00bfff;
+        animation : hoverScale 1.2s forwards;
+    }
+@keyframes hoverScale {
+    to {
+        transform : scale(1.5);
+    }
+}
+/*-----------------------*/
+/*GENERAL-SETTINGS*/
+.project-header-genereal-settings 
+{
+    display : flex;
+    justify-content : center;
+    padding : 15px 0 0 0;
+}
+/*-----------------------*/
+/*LOGO*/
+
+.project-header-logo {
+    width : 100%;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: flex-start;
+    margin: 0px 0px 0px 24px;
+}
+/*-----------------------*/
+
