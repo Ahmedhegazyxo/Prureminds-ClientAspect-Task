@@ -1,6 +1,6 @@
 ﻿namespace Pureminds.Client.Pages;
 
-public partial class Services 
+public partial class CompanyProjects
 {
-   
+
 }

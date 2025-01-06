@@ -1,6 +1,6 @@
 ﻿namespace Pureminds.Client.Pages;
 
-public partial class Counter
+public partial class Breif
 {
 
 }

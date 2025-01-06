@@ -100,13 +100,3 @@ code {
 h1 {
     font-size: 3.5rem;
 }
-ul {
-    list-style-type : disc; 
-    padding-left: 20px; 
-}
-
-li {
-    color: #00CEFF;
-    font-size: 25px; 
-    cursor : pointer;
-}
