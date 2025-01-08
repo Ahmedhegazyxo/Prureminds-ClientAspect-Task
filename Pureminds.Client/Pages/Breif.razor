@@ -1,4 +1,5 @@
-﻿<section class="p-4 mt-2 relative pt-10" id="brief">
+﻿@inject HttpClient _client;
+<section class="p-4 mt-2 relative pt-10" id="brief">
     <!-- Background Image -->
     <img class="absolute top-0 left-0 h-full w-full z-0" src="./assets/svgs/Path 16115.png" alt="Alternate Text" />
 
@@ -7,7 +8,7 @@
         <div class="relative md:flex justify-between gap-5">
             <div>
                 <h2 class="text-3xl">
-                    <span class="text-base mr-4">Our Enterprise </span>Strategies for advancing your business to new heights.
+                    <span class="text-base mr-4">Our Enterprise </span>@generalSetting.CompanyStrategy
                 </h2>
             </div>
             <div>

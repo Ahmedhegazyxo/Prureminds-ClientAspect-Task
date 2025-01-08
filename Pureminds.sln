@@ -5,9 +5,9 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pureminds.Client", "Pureminds.Client\Pureminds.Client.csproj", "{B25F442B-D59E-4917-85EB-382F2063E244}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pureminds.Server", "Pureminds.Server\Pureminds.Server.csproj", "{C7D06148-2F3E-47F6-A667-007578DB13CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pureminds.Server", "Pureminds.Server\Pureminds.Server.csproj", "{C7D06148-2F3E-47F6-A667-007578DB13CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pureminds.Shared", "Pureminds.Shared\Pureminds.Shared.csproj", "{E346D92D-E489-4D79-B019-3E5C7BB9EE99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pureminds.Shared", "Pureminds.Shared\Pureminds.Shared.csproj", "{E346D92D-E489-4D79-B019-3E5C7BB9EE99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
