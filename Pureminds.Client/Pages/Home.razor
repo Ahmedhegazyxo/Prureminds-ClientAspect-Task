@@ -1,5 +1,7 @@
 ﻿@using Pureminds.Client.Pages;
 @page "/"
+@inject HttpClient _client
+
 <head>
     <link rel="stylesheet" href="./css/home-page.css" />
 </head>
@@ -10,7 +12,7 @@
                 <div class="p-20">
                     <h1 class="zoom-in-effect text-4xl md:text-6xl">
                         Welcome to
-                        <span class="highlight"> Pureminds </span>, a leading media production company dedicated to creating captivating visual experiences.
+                        <span class="highlight"> Pureminds </span> @generalSetting.WelcomePhrase
                     </h1>
                     <div class="w-full overflow-hidden flex justify-start py-6 items-center gap-2">
                         <button>
