@@ -6,4 +6,9 @@ public class ProductsController : BaseController<Product>
     {
         _service = service;
     }
+    [HttpGet("GetProductsWithAttachments")]
+    public async Task<List<Product>> GetProductsWithAttachments()
+    {
+        return await _service.GetProductsWithAttachments();
+    }
 }

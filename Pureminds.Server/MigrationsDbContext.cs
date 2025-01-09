@@ -19,6 +19,7 @@ public class MigrationsDbContext : DbContext
         modelBuilder.ApplyConfiguration(new ProductEntityConfigurations());
         modelBuilder.ApplyConfiguration(new MediaClientEntityConfigurations());
         modelBuilder.ApplyConfiguration(new GeneralSettingEntityConfigurations());
+        modelBuilder.ApplyConfiguration(new ProductAttachmentConfigurations());
         base.OnModelCreating(modelBuilder);
     }
 }
