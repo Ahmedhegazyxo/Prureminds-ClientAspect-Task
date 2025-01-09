@@ -1,4 +1,5 @@
 ﻿@page "/about"
+@using Pureminds.Shared
 <section class="mx-auto text-center">
     <Navbar />
     <h1 class="text-4xl md:text-5xl font-bold mb-4">We're here to make <br> your design dreams <br> come true.</h1>
@@ -46,47 +47,60 @@
             <br />devoid of egos
         </h3>
 
-        <div class="mt-20 even:mt-10 flex gap-8">
-            <div class="relative p-4 rounded-lg overflow-hidden w-[300px] h-[400px] hover:scale-105 transition-all ease-linear">
-                <img src="./assets/projects/Group 1264.png" alt="Card 2" class="w-full rounded-lg">
-                <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
-                    <p class="text-sm opacity-90 text-white">Full project title here / Full project title here</p>
-                    <div class="flex mt-2 space-x-2">
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded">Button 1</button>
-                        <button class="bg-gray-600 text-white px-4 py-2 rounded">Button 2</button>
+        <div class="mt-20 even:mt-10 flex gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+            @foreach (Employee employee in employees)
+            {
+                <div class="relative p-4 rounded-lg overflow-hidden w-[300px] h-[400px] hover:scale-105 transition-all ease-linear">
+                    <img src="@employee.ImagePath" alt="Card 2" class="w-full rounded-lg">
+                    <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
+                        <div class=" flex flex-col mt-2 space-x-2 justify-start">
+                            <p class="font-bold">@employee.Name</p>
+                            <p>@employee.JobDescription</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="relative p-4 rounded-lg overflow-hidden w-[300px] h-[400px] hover:scale-105 transition-all ease-linear">
-                <img src="./assets/projects/Group 1264.png" alt="Card 2" class="w-full rounded-lg">
-                <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
-                    <p class="text-sm opacity-90 text-white">Full project title here / Full project title here</p>
-                    <div class="flex mt-2 space-x-2">
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded">Button 1</button>
-                        <button class="bg-gray-600 text-white px-4 py-2 rounded">Button 2</button>
-                    </div>
-                </div>
-            </div>
-            <div class="relative p-4 rounded-lg overflow-hidden w-[300px] h-[400px] hover:scale-105 transition-all ease-linear">
-                <img src="./assets/projects/Group 1264.png" alt="Card 2" class="w-full rounded-lg">
-                <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
-                    <p class="text-sm opacity-90 text-white">Full project title here / Full project title here</p>
-                    <div class="flex mt-2 space-x-2">
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded">Button 1</button>
-                        <button class="bg-gray-600 text-white px-4 py-2 rounded">Button 2</button>
-                    </div>
-                </div>
-            </div>
-            <div class="relative p-4 rounded-lg overflow-hidden w-[300px] h-[400px] hover:scale-105 transition-all ease-linear">
-                <img src="./assets/projects/Group 1264.png" alt="Card 2" class="w-full rounded-lg">
-                <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
-                    <p class="text-sm opacity-90 text-white">Full project title here / Full project title here</p>
-                    <div class="flex mt-2 space-x-2">
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded">Button 1</button>
-                        <button class="bg-gray-600 text-white px-4 py-2 rounded">Button 2</button>
-                    </div>
-                </div>
-            </div>
+            }
+
         </div>
     </div>
 </section>
+@code
+{
+    List<Employee> employees = new();
+    protected override void OnInitialized()
+    {
+        employees.Add(new Employee
+            {
+                Name = "Abdullah Alsaleem",
+                JobDescription = "Owner",
+                ImagePath = "./assets/board/Abdullah Alsaleem.png"
+            });
+        employees.Add(new Employee
+            {
+                Name = "Sara Alwuheib",
+                JobDescription = "Operation Specialist",
+                ImagePath = "./assets/board/Sara Alwuhaib.png"
+            });
+        employees.Add(new Employee
+            {
+                Name = "Eman Almalki",
+                JobDescription = "Content Management",
+                ImagePath = "./assets/board/Eman Almalki.png"
+            });
+        employees.Add(new Employee
+            {
+                Name = "Walid Rajab",
+                JobDescription = "PMO Management",
+                ImagePath = "./assets/board/Walid Rajab.png"
+            });
+            employees.Add(new Employee
+            {
+                Name = "Nawal Anber",
+                JobDescription = "Interactive Technology Management",
+                ImagePath = "./assets/board/nawal-anber.png"
+            });
+
+
+        base.OnInitialized();
+    }
+}
