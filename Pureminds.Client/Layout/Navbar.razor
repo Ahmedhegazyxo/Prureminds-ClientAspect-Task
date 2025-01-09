@@ -1,0 +1,51 @@
+﻿<nav class="flex items-center h-[60px] w-full px-4 py-6 z-[1000]">
+    <div class="flex-1 flex items-center px-4 md:justify-start">
+        <a href="/">
+            <img src="./assets/logos/pure-minds-logo.png" alt="logo" class="w-[100px] object-cover" />
+        </a>
+    </div>
+
+    <div class="items-center flex-1 justify-center gap-4 hidden md:flex">
+        <a class="bg-white/10 text-base font-medium hover:mb-4 block transition-all ease-linear p-1 px-2 rounded" href="services">Services</a>
+        <a class="bg-white/10 text-base font-medium hover:mb-4 block transition-all ease-linear p-1 px-2 rounded" href="#projects">Work</a>
+        <a class="bg-white/10 text-base font-medium hover:mb-4 block transition-all ease-linear p-1 px-2 rounded" href="about">About</a>
+    </div>
+    
+    <div class="flex-1 flex items-center justify-end gap-4">
+        <button class="text-sm">
+            [AR]
+        </button>
+        <button>
+            <img src="./assets/symbols/Component 13 – 23.png" alt="logo" class="h-[24px] w-[24px]" />
+        </button>
+        <div class="flex">
+            <button>
+                <img src="./assets/buttons/Rectangle 7.png" alt="logo" class="h-[30px] w-auto" />
+            </button>
+            <button>
+                <img src="./assets/buttons/Rectangle 8.png" alt="logo" class="h-[30px] w-auto" />
+            </button>
+        </div>
+    </div>
+
+        @* here triger ur function  *@
+        <button class="rounded-md bg-red-500 flex flex-col gap-2 md:hidden">
+            <div class="h-2 bg-black w-full"/>
+            <div class="h-2 bg-black w-full"/>
+            <div class="h-2 bg-black w-full"/>
+        </button>
+        @* make the left equal 0 after clik left-0 *@
+    <div class="items-center justify-start flex flex-col md:hidden fixed h-full bg-red-500 top-0 left-0 hover:-left-[300vw] w-1/2 gap-3
+    transition-all w-full p-3 pt-20">
+        <button class="rounded-md border absolute top-4 right-4">
+            close
+        </button>
+        <a class="bg-white/10 text-base w-full font-medium hover:mb-4 block transition-all ease-linear p-1 px-2 rounded" href="services">Services</a>
+        <a class="bg-white/10 text-base w-full font-medium hover:mb-4 block transition-all ease-linear p-1 px-2 rounded" href="#projects">Work</a>
+        <a class="bg-white/10 text-base w-full font-medium hover:mb-4 block transition-all ease-linear p-1 px-2 rounded" href="about">About</a>
+    </div>
+</nav>
+
+@code {
+
+}

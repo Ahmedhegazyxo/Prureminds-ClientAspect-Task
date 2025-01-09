@@ -1,23 +1,76 @@
 ﻿@page "/Projects"
 @inject HttpClient _client
 <section id="projects" class="container mx-auto p-6">
+    <Navbar/>
     <h2 class="text-xl font-semibold text-center mb-8">See what we've been working on</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        @if (products is not null)
-        {
-            foreach (Product product in products)
-            {
-                <div class="relative bg-gradient-to-b from-[#1E293B] to-[#0F172A] p-4 rounded-lg overflow-hidden">
-                    <img src="./assets/projects/Group 497.png" alt="Card 1" class="w-full rounded-lg">
-                    <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
-                        <p class="text-sm opacity-90 text-white">@product.ProductTitle</p>
-                        <div class="flex mt-2 space-x-2">
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded">Details</button>
-                        </div>
-                    </div>
+        <!-- Card 1 -->
+        <div class="relative bg-gradient-to-b from-[#1E293B] to-[#0F172A] p-4 rounded-lg overflow-hidden">
+            <img src="./assets/projects/Group 497.png" alt="Card 1" class="w-full rounded-lg">
+            <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
+                <p class="text-sm opacity-90 text-white">Full project title here / Full project title here</p>
+                <div class="flex mt-2 space-x-2">
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded">Button 1</button>
+                    <button class="bg-gray-600 text-white px-4 py-2 rounded">Button 2</button>
                 </div>
-            }
-        }
+            </div>
+        </div>
+        <!-- Card 2 this is the one u should to duplicate -->
+
+        <div class="relative  p-4 rounded-lg overflow-hidden hover:scale-105 transition-all ease-linear">
+            <img src="./assets/projects/Group 1264.png" alt="Card 2" class="w-full rounded-lg">
+            <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
+                <p class="text-sm opacity-90 text-white">Full project title here / Full project title here</p>
+                <div class="flex mt-2 space-x-2">
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded">Button 1</button>
+                    <button class="bg-gray-600 text-white px-4 py-2 rounded">Button 2</button>
+                </div>
+            </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="relative bg-gradient-to-b from-[#1E293B] to-[#0F172A] p-4 rounded-lg overflow-hidden">
+            <img src="./assets/projects/Group 1967.png" alt="Card 3" class="w-full rounded-lg">
+            <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
+                <p class="text-sm opacity-90 text-white">Full project title here / Full project title here</p>
+                <div class="flex mt-2 space-x-2">
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded">Button 1</button>
+                    <button class="bg-gray-600 text-white px-4 py-2 rounded">Button 2</button>
+                </div>
+            </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="relative bg-gradient-to-b from-[#1E293B] to-[#0F172A] p-4 rounded-lg overflow-hidden">
+            <img src="./assets/projects/Group 1969.png" alt="Card 4" class="w-full rounded-lg">
+            <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
+                <p class="text-sm opacity-90 text-white">Full project title here / Full project title here</p>
+                <div class="flex mt-2 space-x-2">
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded">Button 1</button>
+                    <button class="bg-gray-600 text-white px-4 py-2 rounded">Button 2</button>
+                </div>
+            </div>
+        </div>
+        <!-- Card 5 -->
+        <div class="relative bg-gradient-to-b from-[#1E293B] to-[#0F172A] p-4 rounded-lg overflow-hidden">
+            <img src="./assets/projects/Group 1971.png" alt="Card 5" class="w-full rounded-lg">
+            <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
+                <p class="text-sm opacity-90 text-white">Full project title here / Full project title here</p>
+                <div class="flex mt-2 space-x-2">
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded">Button 1</button>
+                    <button class="bg-gray-600 text-white px-4 py-2 rounded">Button 2</button>
+                </div>
+            </div>
+        </div>
+        <!-- Card 6 -->
+        <div class="relative bg-gradient-to-b from-[#1E293B] to-[#0F172A] p-4 rounded-lg overflow-hidden">
+            <img src="./assets/projects/Group 1270.png" alt="Card 6" class="w-full rounded-lg">
+            <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
+                <p class="text-sm opacity-90 text-white">Full project title here / Full project title here</p>
+                <div class="flex mt-2 space-x-2">
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded">Button 1</button>
+                    <button class="bg-gray-600 text-white px-4 py-2 rounded">Button 2</button>
+                </div>
+            </div>
+        </div>
     </div>
     <p class="text-center mt-8">
         Do you feel ready? <a href="#" class="text-blue-400 underline">Let's work together</a>

@@ -1,5 +1,6 @@
 ﻿@page "/about"
-<section class="container mx-auto py-16 text-center">
+<section class="mx-auto text-center">
+        <Navbar/>
         <h1 class="text-4xl md:text-5xl font-bold mb-4">We're here to make <br> your design dreams <br> come true.</h1>
         <a href="#" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded">Learn about Us</a>
     </section>
@@ -29,21 +30,21 @@
         </div>
     </section>
 
-<section class="container mx-auto py-16 mt-40">
+<section class="container mx-auto py-16 mt-10">
     <div class="relative">
         <!-- Image Skeleton Only -->
-        <div role="status" class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center">
+@*         <div role="status" class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center">
             <div class="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
                 <svg class="w-10 h-10 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                     <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
                 </svg>
             </div>
         </div>
-
+ *@
         <!-- Actual Image -->
-        <img src="./assets/logos/Group 52s8.png" alt="PureMinds Building" class="w-full rounded-lg shadow-lg hidden" onload="this.classList.remove('hidden'); this.previousElementSibling.style.display = 'none';">
+        @* <img src="./assets/logos/Group 52s8.png" alt="PureMinds Building" class="w-full rounded-lg shadow-lg hidden" onload="this.classList.remove('hidden'); this.previousElementSibling.style.display = 'none';"> *@
 
-        <div class="absolute bottom-4 left-80 bg-white/80 p-4 rounded-lg ml-80">
+        @* <div class="absolute bottom-4 left-80 bg-white/80 p-4 rounded-lg ml-80">
             <div class="flex flex-col items-center">
                 <img src="award-icon.png" alt="Award Icon" class="h-16 mb-2">
                 <p class="text-center font-bold">Best<br>Workplaces<br>for Millennials</p>
@@ -51,6 +52,60 @@
                 <p class="text-center">GCC<br>2024</p>
             </div>
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 w-full">Contact Us</button>
-        </div>
+        </div> *@
+
+        <div class="relative p-4 rounded-lg overflow-hidden w-full h-[500px]">
+            <img src="./assets/projects/Group 497.png" alt="Card 1" class="w-full rounded-lg">
+           @*  <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
+            </div>
+ *@        </div>
+
+            <h3 class="text-6xl lg:text-[80px] font-bold max-w-[600px] w-full mx-auto mt-20 text-blance">
+                A range of personalities, 
+                <br />devoid of egos
+            </h3>
+
+            <div class="mt-20 even:mt-10 flex gap-8">
+            <div class="relative p-4 rounded-lg overflow-hidden w-[300px] h-[400px] hover:scale-105 transition-all ease-linear">
+                    <img src="./assets/projects/Group 1264.png" alt="Card 2" class="w-full rounded-lg">
+                    <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
+                        <p class="text-sm opacity-90 text-white">Full project title here / Full project title here</p>
+                        <div class="flex mt-2 space-x-2">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded">Button 1</button>
+                            <button class="bg-gray-600 text-white px-4 py-2 rounded">Button 2</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative p-4 rounded-lg overflow-hidden w-[300px] h-[400px] hover:scale-105 transition-all ease-linear">
+                    <img src="./assets/projects/Group 1264.png" alt="Card 2" class="w-full rounded-lg">
+                    <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
+                        <p class="text-sm opacity-90 text-white">Full project title here / Full project title here</p>
+                        <div class="flex mt-2 space-x-2">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded">Button 1</button>
+                            <button class="bg-gray-600 text-white px-4 py-2 rounded">Button 2</button>
+                        </div>
+                    </div>
+                </div>
+            <div class="relative p-4 rounded-lg overflow-hidden w-[300px] h-[400px] hover:scale-105 transition-all ease-linear">
+                <img src="./assets/projects/Group 1264.png" alt="Card 2" class="w-full rounded-lg">
+                <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
+                    <p class="text-sm opacity-90 text-white">Full project title here / Full project title here</p>
+                    <div class="flex mt-2 space-x-2">
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded">Button 1</button>
+                        <button class="bg-gray-600 text-white px-4 py-2 rounded">Button 2</button>
+                    </div>
+                </div>
+            </div>
+            <div class="relative p-4 rounded-lg overflow-hidden w-[300px] h-[400px] hover:scale-105 transition-all ease-linear">
+                <img src="./assets/projects/Group 1264.png" alt="Card 2" class="w-full rounded-lg">
+                <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
+                    <p class="text-sm opacity-90 text-white">Full project title here / Full project title here</p>
+                    <div class="flex mt-2 space-x-2">
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded">Button 1</button>
+                        <button class="bg-gray-600 text-white px-4 py-2 rounded">Button 2</button>
+                    </div>
+                </div>
+            </div>
+            </div>
     </div>
 </section>

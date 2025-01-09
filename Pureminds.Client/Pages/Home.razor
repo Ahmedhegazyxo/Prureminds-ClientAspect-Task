@@ -5,8 +5,17 @@
 <head>
     <link rel="stylesheet" href="./css/home-page.css" />
 </head>
-<div class="home-content mt-5">
-    <section id="home" class=" items-between flex flex-col justify-between">
+<div class="w-full relative">
+    <div class="absolute top-0 left-0 z-[1000] w-full">
+        <Navbar/>
+    </div>
+        <div class="w-full h-[600px]">
+        <video class="w-full h-full"  autoplay>
+            <source src="./assets/video.mp4" type="video/mp4">
+            @* <source src="mov_bbb.ogg" type="video/ogg"> *@
+        </video>
+    </div>
+    <section id="home" class=" items-between flex flex-col justify-between mt-20">
         <div class="flex flex-col justify-between">
             <div class="flex relative w-full">
                 <div class="p-20">
@@ -14,12 +23,19 @@
                         Welcome to
                         <span class="highlight"> Pureminds </span> @generalSetting.WelcomePhrase
                     </h1>
-                    <div class="w-full overflow-hidden flex justify-start py-6 items-center gap-2">
-                        <button>
-                            <img src="./assets/buttons/Rectangle 7.png" alt="logo" />
-                        </button>
-                        <button>
-                            <img src="./assets/buttons/Rectangle 8.png" alt="logo" />
+                    <div class="w-full overflow-hidden flex justify-start py-6 items-center gap-2 group">
+                        <p class="overflow-hidden bg-white text-black px-4 py-3 rounded-3xl h-[45px]">
+                            @* <img src="./assets/buttons/Rectangle 7.png" alt="logo" /> *@
+                            <span class="group-hover:-translate-y-10 block transition-all ease-linear duration-300">
+                                View All Services
+                            </span>
+                            <span class="translate-y-10 group-hover:-translate-y-6 block transition-all ease-linear duration-300">
+                                View All Services
+                            </span>
+                        </p>
+                        <button class="bg-blue-500 w-12 h-12 flex items-center justify-center group-hover:scale-110 rounded-full transition-all group-hover:rotate-45">
+                            @* <img src="./assets/buttons/Rectangle 8.png" alt="logo" /> *@
+                            <img src="./assets/svgs/Mask Group 1.png" alt="logo" />
                         </button>
                         <button class="flex items-center">
                             <p> Meet the team</p>
