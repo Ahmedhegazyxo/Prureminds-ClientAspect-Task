@@ -4,6 +4,6 @@ public partial class Navbar
 {
     private async Task NavigateToStartAProject()
     {
-        _nvmgr.NavigateTo("/StartAProject");
+        _nvmgr.NavigateTo("/ProjectRequests");
     }
 }

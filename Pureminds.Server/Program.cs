@@ -15,6 +15,7 @@ builder.Services.AddTransient<IMediaClientService, MediaClientService>();
 builder.Services.AddTransient<IRelevantQuestionService, RelevantQuestionService>();
 builder.Services.AddTransient<IAttachmentService, AttachmentService>();
 builder.Services.AddTransient<IProjectRequestService, ProjectRequestService>();
+builder.Services.AddTransient<IProvidedProvisionService, ProvidedProvisionService>();
 
 builder.Services.AddSingleton<IEmailService, EmailService>();
 

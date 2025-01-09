@@ -1,6 +1,7 @@
 ﻿@using Pureminds.Client.Pages;
 @page "/"
 @inject HttpClient _client
+@inject NavigationManager _nvmgr
 <head>
     <link rel="stylesheet" href="./css/home-page.css" />
 </head>
@@ -61,4 +62,24 @@
     </section>
     <Breif />
     <Pureminds.Client.Components.CompanyProjectsExtension />
+    @if (relevantQuestions is not null)
+    {
+        <div class="flex justify-end p-5">
+            <ul class="text-lg space-y-4 list-decimal list-outside border-l-2 border-gray-300 pl-8 py-5">
+                @foreach (RelevantQuestion relevantQuestion in relevantQuestions)
+                {
+                    <li @onclick="() => NavigateToQuestion(relevantQuestion.Id)"
+                        class="border-b border-gray-300 pb-2  rounded-lg p-3 cursor-pointer
+                       transition-colors duration-200 ease-linear">
+                        <p class="text-center text-black-950 text-lg"> @relevantQuestion.QuestionDesceiption</p>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+    else
+    {
+        <Pureminds.Client.Components.ContentLoading />
+    }
+
 </div>

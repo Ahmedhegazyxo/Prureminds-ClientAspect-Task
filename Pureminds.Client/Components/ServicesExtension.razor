@@ -1,4 +1,5 @@
-﻿<section id="servicesextension" class="p-10">
+﻿@inject HttpClient _client
+<section id="servicesextension" class="p-10">
     <header class="pt-16">
         <div class="md:flex md:justify-between ">
             <div class="text-start p-2 md:w-1/2">
@@ -16,76 +17,71 @@
         </div>
     </header>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 p-8 items-start">
 
-        <!-- Develop Section -->
-        <div class="mt-16 text-center">
-            <div class="flex justify-start items-center mb-4">
-                <div class="w-60 h-30 rounded-full flex justify-center items-start">
-                    <!-- Placeholder for Develop Icon -->
-                    <img src="./assets/icons/Group 2199.png" alt="Develop Icon">
+    @if (provisions is null)
+    {
+        <ContentLoading />
+    }
+    else
+    {
+        <div class="grid grid-cols-1 lg:grid-cols-2 p-8 items-start">
+            <div class="mt-16 text-center">
+                <div class="flex justify-start items-center mb-4">
+                    <div class="w-60 h-30 rounded-full flex justify-center items-start">
+                        <img src="./assets/icons/Group 2199.png" alt="Develop Icon">
+                    </div>
+                    <h2 class="ml-4 text-6xl font-bold">Develop</h2>
                 </div>
-                <h2 class="ml-4 text-6xl font-bold">Develop</h2>
+                <div class="flex justify-end">
+                    <ul class="text-lg space-y-4 list-decimal list-outside border-l-2 border-gray-300 pl-8 ">
+                        @foreach (ProvidedProvision provision in provisions.Where(e=>e.WebsiteSectionId == 1 ))
+                        {
+                            <li class="border-b border-gray-300 pb-2 hover:translate-x-3 transition-all ease-linear">
+                                @provision.Name
+                            </li>
+                        }
+                    </ul>
+                </div>
             </div>
-            <div class="flex justify-end">
-                <ul class="text-lg space-y-4 list-decimal list-outside border-l-2 border-gray-300 pl-8">
-                    <li class="border-b border-gray-300 pb-2">
-                        Digital Marketing
-                    </li>
-                    <li class="border-b border-gray-300 pb-2">
-                        Advertising Campaigns
-                    </li>
-                </ul>
+
+            <div class="mt-16 text-center">
+                <div class="flex justify-start items-center mb-8">
+                    <div class="w-60 h-30  rounded-full flex justify-center items-center">
+                        <img src="./assets/icons/Group 2201.png" alt="Support Icon">
+                    </div>
+                    <h2 class="ml-4 text-6xl font-bold">Support</h2>
+                </div>
+                <div class="flex justify-end">
+                    <ul class="text-lg space-y-4 list-decimal list-outside border-l-2 border-gray-300 pl-8">
+                        @foreach (ProvidedProvision provision in provisions.Where(e => e.WebsiteSectionId == 2))
+                        {
+                            <li class="border-b border-gray-300 pb-2 hover:translate-x-3 transition-all ease-linear">
+                                @provision.Name
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <div class="flex justify-start items-center mb-8">
+                    <div class="w-30 h-30  rounded-full flex justify-center items-center">
+                        <img src="./assets/icons/Group 2210.png" alt="Design Icon">
+                    </div>
+                    <h2 class="ml-4 text-6xl font-bold">Design</h2>
+                </div>
+
+                <div class="flex justify-end">
+                    <ul class="text-lg space-y-4 list-decimal list-outside border-l-2 border-gray-300 pl-8">
+                        @foreach (ProvidedProvision provision in provisions.Where(e => e.WebsiteSectionId == 3))
+                        {
+                            <li class="border-b border-gray-300 pb-2 hover:translate-x-3 transition-all ease-linear">
+                                @provision.Name
+                            </li>
+                        }
+                    </ul>
+                </div>
             </div>
         </div>
-
-        <!-- Support Section -->
-        <div class="mt-16 text-center">
-            <div class="flex justify-start items-center mb-8">
-                <div class="w-60 h-30  rounded-full flex justify-center items-center">
-                    <!-- Placeholder for Support Icon -->
-                    <img src="./assets/icons/Group 2201.png" alt="Support Icon">
-                </div>
-                <h2 class="ml-4 text-6xl font-bold">Support</h2>
-            </div>
-            <div class="flex justify-end">
-                <ul class="text-lg space-y-4 list-decimal list-outside border-l-2 border-gray-300 pl-8">
-                    <li class="border-b border-gray-300 pb-2">
-                        Strategies & Consulting
-                    </li>
-                    <li class="border-b border-gray-300 pb-2">
-                        Exhibitions & Events
-                    </li>
-                    <li class="border-b border-gray-300 pb-2">
-                        Events & Entertainment
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Design Section -->
-        <div class="mt-16 text-center">
-            <div class="flex justify-start items-center mb-8">
-                <div class="w-30 h-30  rounded-full flex justify-center items-center">
-                    <!-- Placeholder for Design Icon -->
-                    <img src="./assets/icons/Group 2210.png" alt="Design Icon">
-                </div>
-                <h2 class="ml-4 text-6xl font-bold">Design</h2>
-            </div>
-
-            <div class="flex justify-end">
-                <ul class="text-lg space-y-4 list-decimal list-outside border-l-2 border-gray-300 pl-8">
-                    <li class="border-b border-gray-300 pb-2">
-                        Film Production
-                    </li>
-                    <li class="border-b border-gray-300 pb-2">
-                        Creative Solutions
-                    </li>
-                    <li class="border-b border-gray-300 pb-2">
-                        Brand Identity
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    }
 </section>

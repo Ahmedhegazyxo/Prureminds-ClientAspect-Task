@@ -16,4 +16,5 @@ public partial class CompanyProjectsExtension
         await InvokeAsync(StateHasChanged);
         await base.OnInitializedAsync();
     }
+
 }

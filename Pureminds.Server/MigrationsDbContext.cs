@@ -22,6 +22,7 @@ public class MigrationsDbContext : DbContext
         modelBuilder.ApplyConfiguration(new ProductAttachmentConfigurations());
         modelBuilder.ApplyConfiguration(new AttachmentEntityConfigurations());
         modelBuilder.ApplyConfiguration(new ProjectRequestEntityConfigurations());
+        modelBuilder.ApplyConfiguration(new ProvidedProvisionEntityConfigurations());
         
         base.OnModelCreating(modelBuilder);
     }

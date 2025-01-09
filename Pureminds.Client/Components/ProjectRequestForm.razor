@@ -1,0 +1,111 @@
+﻿@inject HttpClient _client
+
+
+<div class="min-h-screen bg-[#02021C] text-white px-8 py-10 flex justify-center items-center">
+    <div class="bg-[#0F172A] p-8 rounded-lg shadow-lg max-w-5xl w-full space-y-10">
+        @if (!isSubmittedSuccessfully)
+        {
+            <EditForm Model="@source" OnValidSubmit="HandleValidSubmit">
+                <DataAnnotationsValidator />
+                <section id="section-1" class="space-y-6 p-5">
+                    <h2 class="text-3xl font-bold">Let&apos;s start at the very beginning</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Name</label>
+                            <input type="text" class="w-full px-4 py-2 bg-[#1E293B] rounded-lg border border-gray-700" @bind="@source.ClientName" />
+                            <ValidationMessage For="@(() => source.ClientName)" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Email</label>
+                            <input type="email" class="w-full px-4 py-2 bg-[#1E293B] rounded-lg border border-gray-700" @bind="@source.ClientEmail" />
+                            <ValidationMessage For="@(() => source.ClientEmail)" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Company</label>
+                            <input type="text" class="w-full px-4 py-2 bg-[#1E293B] rounded-lg border border-gray-700" @bind="@source.ClientCompany" />
+                            <ValidationMessage For="@(() => source.ClientCompany)" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Phone Number</label>
+                            <input type="text" class="w-full px-4 py-2 bg-[#1E293B] rounded-lg border border-gray-700" @bind="@source.ClientPhoneNumber" />
+                            <ValidationMessage For="@(() => source.ClientPhoneNumber)" />
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-2" class="space-y-6 p-5">
+                    <h2 class="text-3xl font-bold">Let&apos;s talk budget &amp; timelines</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-1">I want to launch my project on:</label>
+                            <input type="date" class="w-full px-4 py-2 bg-[#1E293B] rounded-lg border border-gray-700" @bind="@source.SuggestedStartDate" />
+                            <ValidationMessage For="@(() => source.SuggestedStartDate)" />
+                        </div>
+                        <div class="flex space-x-4">
+                            <div class="flex-1">
+                                <label class="block text-sm font-medium mb-1">Budget Min</label>
+                                <input type="number" class="w-full px-4 py-2 bg-[#1E293B] rounded-lg border border-gray-700" @bind="@source.BudgetStartLimit" />
+                                <ValidationMessage For="@(() => source.BudgetStartLimit)" />
+                            </div>
+                            <div class="flex-1">
+                                <label class="block text-sm font-medium mb-1">Budget Max</label>
+                                <input type="number" class="w-full px-4 py-2 bg-[#1E293B] rounded-lg border border-gray-700" @bind="@source.BudgetEndLimit" />
+                                <ValidationMessage For="@(() => source.BudgetEndLimit)" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                @if (providedProvisions is null)
+                {
+                    <ContentLoading />
+                }
+                else
+                {
+                    <section id="section-3" class="space-y-6 p-5">
+                        <h2 class="text-3xl font-bold">What offerings do you require?</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            @foreach (ProvidedProvision provision in providedProvisions)
+                            {
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="form-checkbox bg-[#1E293B] border-gray-700" />
+                                    <span>@provision.Name</span>
+                                </label>
+                            }
+                        </div>
+                    </section>
+                }
+
+                <section id="section-4" class="space-y-6 p-5">
+                    <h2 class="text-3xl font-bold">Give us the deets!</h2>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-1">Tell us about your project</label>
+                        <textarea class="w-full px-4 py-2 bg-[#1E293B] rounded-lg border border-gray-700" rows="5" @bind="@source.ProjectBrief"></textarea>
+                        <ValidationMessage For="@(() => source.ProjectBrief)" />
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-1">Or upload a project brief</label>
+                        <InputFile accept=".jpg,.jpeg,.png,.pdf" id="attachment2" class="form-control" OnChange="@(e => HandleFileUpload(e))" />
+                    </div>
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" class="form-checkbox bg-[#1E293B] border-gray-700" />
+                        <span>Subscribe to our newsletter for all the latest Pureminds goss!</span>
+                    </label>
+                    <div class="flex justify-end">
+                        <button class="px-6 py-3 bg-green-500 rounded-lg text-white hover:bg-green-600 transition-all" type="submit">Submit</button>
+                    </div>
+                </section>
+            </EditForm>
+        }
+        else
+        {
+            <div class="text-center text-white text-4xl p-4">
+                <h2>
+                    @submittedMessage
+                </h2>
+            </div>
+        }
+    </div>
+</div>
+
+        }

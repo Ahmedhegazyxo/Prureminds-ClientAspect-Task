@@ -1,0 +1,71 @@
+﻿@page "/project-submissions"
+@inject HttpClient _client
+@inject IJSRuntime _jsruntime
+
+
+<Navbar />
+<div class="min-h-screen bg-[#02021C] text-white px-8 py-10">
+    <h1 class="text-4xl mb-8 text-center">Saved Project Submissions</h1>
+    <div class="overflow-x-auto bg-[#0F172A] rounded-lg shadow-lg p-6">
+        <table class="min-w-full border-collapse">
+            <thead class="bg-[#1E293B]">
+                <tr>
+                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Name</th>
+                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Email</th>
+                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Phone</th>
+                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Company</th>
+                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Start Date</th>
+                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Budget</th>
+                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Brief</th>
+                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Attachment</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (submissions is null || !submissions.Any())
+                {
+                    <Pureminds.Client.Components.ContentLoading />
+                }
+                else if (!submissions.Any())
+                {
+                    <tr>
+                        <td colspan="7" class="text-center py-4 text-gray-500">No submissions found.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var submission in submissions)
+                    {
+                        <tr class="hover:bg-[#1E293B] transition">
+                            <td class="py-3 px-4 border-t border-gray-700">@submission.ClientName</td>
+                            <td class="py-3 px-4 border-t border-gray-700">@submission.ClientEmail</td>
+                            <td class="py-3 px-4 border-t border-gray-700">@submission.ClientPhoneNumber</td>
+                            <td class="py-3 px-4 border-t border-gray-700">@submission.ClientCompany</td>
+                            <td class="py-3 px-4 border-t border-gray-700">@submission.SuggestedStartDate?.ToString("yyyy-MM-dd")</td>
+                            <td class="py-3 px-4 border-t border-gray-700">
+                                @submission.BudgetStartLimit SAR - @submission.BudgetEndLimit SAR
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    private List<ProjectRequest>? submissions;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            submissions = await _client.GetFromJsonAsync<List<ProjectRequest>>("api/ProjectRequests");
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine(exception.Message);
+        }
+        await base.OnInitializedAsync();
+    }
+
+}

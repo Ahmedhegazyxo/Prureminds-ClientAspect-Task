@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pureminds.Server;
 
@@ -11,9 +12,11 @@ using Pureminds.Server;
 namespace Pureminds.Server.Migrations
 {
     [DbContext(typeof(MigrationsDbContext))]
-    partial class MigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250109144437_AddProvidedProvisionsMigrations")]
+    partial class AddProvidedProvisionsMigrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -227,8 +230,7 @@ namespace Pureminds.Server.Migrations
 
                     b.Property<string>("ClientCompany")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ClientEmail")
                         .IsRequired()
@@ -236,8 +238,7 @@ namespace Pureminds.Server.Migrations
 
                     b.Property<string>("ClientName")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ClientPhoneNumber")
                         .IsRequired()
@@ -254,10 +255,9 @@ namespace Pureminds.Server.Migrations
 
                     b.Property<string>("ProjectBrief")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("SuggestedStartDate")
+                    b.Property<DateTime?>("SuggestedStartDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
