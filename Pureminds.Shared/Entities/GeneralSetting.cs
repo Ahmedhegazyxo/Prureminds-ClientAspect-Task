@@ -4,5 +4,6 @@ public class GeneralSetting : BaseEntity
 {
     public string WelcomePhrase { get; set; }
     public string CompanyStrategy { get; set; }
+    public string DashboardVideoFilePath { get; set; }  
 
 }

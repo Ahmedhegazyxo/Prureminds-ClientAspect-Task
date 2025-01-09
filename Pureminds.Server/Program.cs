@@ -1,4 +1,5 @@
 using Pureminds.Client.Pages;
+using System.Net.Mail;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,11 @@ builder.Services.AddTransient<IGeneralSettingService, GeneralSettingService>();
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<IMediaClientService, MediaClientService>();
 builder.Services.AddTransient<IRelevantQuestionService, RelevantQuestionService>();
+builder.Services.AddTransient<IAttachmentService, AttachmentService>();
+builder.Services.AddTransient<IProjectRequestService, ProjectRequestService>();
+
+builder.Services.AddSingleton<IEmailService, EmailService>();
+
 
 if (builder.Environment.IsDevelopment())
     builder.Services.AddDbContext<MigrationsDbContext>(op => op.UseSqlServer(builder.Configuration.GetConnectionString("DevelopmentConnection")));
