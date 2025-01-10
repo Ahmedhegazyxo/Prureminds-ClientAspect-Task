@@ -11,6 +11,8 @@
         <a class="bg-[#02021C20] text-bold text-lg font-medium hover:mb-4 block transition-all ease-linear p-1 px-2 rounded" href="services">Services</a>
         <a class="bg-[#02021C20] text-bold text-lg font-medium hover:mb-4 block transition-all ease-linear p-1 px-2 rounded" href="projects">Work</a>
         <a class="bg-[#02021C20] text-bold text-lg font-medium hover:mb-4 block transition-all ease-linear p-1 px-2 rounded" href="about">About</a>
+        <a class="bg-[#02021C20] text-bold text-lg font-medium hover:mb-4 block transition-all ease-linear p-1 px-2 rounded" href="ProductsGrid">Products</a>
+        <a class="bg-[#02021C20] text-bold text-lg font-medium hover:mb-4 block transition-all ease-linear p-1 px-2 rounded" href="ProjectSubmissions">Projects</a>
     </div>
 
     <div class="flex-1 flex items-center justify-end gap-2">
@@ -20,9 +22,16 @@
         <button>
             <img src="./assets/symbols/Component 13 – 23.png" alt="logo" class="h-[24px] w-[24px]" />
         </button>
-        <a onclick="@NavigateToStartAProject" class="hidden md:block bg-gray-800 hover:bg-gray-700 text-white p-1 px-2 rounded  hover:-translate-x-2 transition-all ease-linear">Start a project</a>
+        <a onclick="@NavigateToStartAProject" class="hidden md:flex items-center bg-gray-800 hover:bg-gray-700 text-white p-1 px-2 rounded hover:-translate-x-2 transition-all ease-linear">
+            <span class="hidden lg:block mr-2">
+                Start a project
+            </span>
+            <span>
+                <i class="fas fa-plus"></i>
+            </span>
+        </a>
     </div>
-    <div class="hidden"> 
+    <div class="hidden">
 
         @* here triger ur function  *@
         <button class="rounded-md bg-red-500 flex flex-col gap-2 md:hidden">

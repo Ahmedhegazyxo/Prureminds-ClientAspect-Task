@@ -2,4 +2,5 @@
 
 public interface IProjectRequestService : IBaseService<ProjectRequest> 
 {
+    Task<ProjectRequest> ReadByIdWithIncludes(int id);
 }

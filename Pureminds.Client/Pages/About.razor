@@ -51,7 +51,7 @@
             @foreach (Employee employee in employees)
             {
                 <div class="relative p-4 rounded-lg overflow-hidden w-[300px] h-[400px] hover:scale-105 transition-all ease-linear">
-                    <img src="@employee.ImagePath" alt="Card 2" class="w-full rounded-lg">
+                    <img src="@employee.Notes" alt="Card 2" class="w-full rounded-lg">
                     <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
                         <div class=" flex flex-col mt-2 space-x-2 justify-start">
                             <p class="font-bold">@employee.Name</p>
@@ -73,31 +73,31 @@
             {
                 Name = "Abdullah Alsaleem",
                 JobDescription = "Owner",
-                ImagePath = "./assets/board/Abdullah Alsaleem.png"
+                Notes = "./assets/board/Abdullah Alsaleem.png"
             });
         employees.Add(new Employee
             {
                 Name = "Sara Alwuheib",
                 JobDescription = "Operation Specialist",
-                ImagePath = "./assets/board/Sara Alwuhaib.png"
+                Notes = "./assets/board/Sara Alwuhaib.png"
             });
         employees.Add(new Employee
             {
                 Name = "Eman Almalki",
                 JobDescription = "Content Management",
-                ImagePath = "./assets/board/Eman Almalki.png"
+                Notes = "./assets/board/Eman Almalki.png"
             });
         employees.Add(new Employee
             {
                 Name = "Walid Rajab",
                 JobDescription = "PMO Management",
-                ImagePath = "./assets/board/Walid Rajab.png"
+                Notes = "./assets/board/Walid Rajab.png"
             });
             employees.Add(new Employee
             {
                 Name = "Nawal Anber",
                 JobDescription = "Interactive Technology Management",
-                ImagePath = "./assets/board/nawal-anber.png"
+                Notes = "./assets/board/nawal-anber.png"
             });
 
 

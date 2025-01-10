@@ -1,70 +1,72 @@
-﻿@inject HttpClient _client;
-<section class="p-4 mt-2 relative pt-10 p-10" id="brief">
-    <img class="absolute top-0 left-0 h-full w-full z-0" src="./assets/svgs/Path 16115.png" alt="Alternate Text" />
+﻿@inject HttpClient _client
+<section class="p-4 mt-10 relative pt-10 md:p-10" id="brief">
+    <!-- Background Image -->
+    <img class="absolute top-0 left-0 h-full w-full object-cover z-0" src="./assets/svgs/Path 16115.png" alt="Alternate Text" />
 
-    <div class="relative z-10 flex flex-col justify-between">
-        <div class="relative md:flex justify-between gap-5">
+    <div class="relative z-10 flex flex-col gap-10">
+        <div class="relative flex flex-col md:flex-row justify-between gap-5">
             <div>
-                <h2 class="text-3xl">
+                <h2 class="text-2xl md:text-3xl font-bold">
                     <span class="text-base mr-4">Our Enterprise </span>@generalSetting.CompanyStrategy
                 </h2>
             </div>
             <div>
-                <p class="mt-4 text-sm text-gray">We provide comprehensive strategic solutions in the design, execution, and management of events, conferences, exhibitions, marketing campaigns, and media centers to create impact and drive change.</p>
+                <p class="mt-4 text-sm text-gray-400">
+                    We provide comprehensive strategic solutions in the design, execution, and management of events, conferences, exhibitions, marketing campaigns, and media centers to create impact and drive change.
+                </p>
             </div>
-        </div>
-        <div class="py-10 px-5 grid grid-cols-1 md:grid-cols-2 gap-2">
-            <div class="relative">
-                <img src="./assets/services/shutterstock_1483381934.png" class="object-cover" />
-                <div class="absolute inset-0 flex flex-col justify-end px-5 py-10">
-                    <div class="mb-1">
-                        <p class="text-base md:text-3xl xl:text-5xl">Advertising Campaigns</p>
-                    </div>
-                    <div class="mb-1">
-                        <p class="text-xs md:text-base">Management, execution, and organization of exhibitions and events that deliver unique and interactive experiences, focusing on building strong customer relationships and enhancing media presence and visibility.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="relative">
-                <img src="./assets/services/shutterstock_1483381934.png" class="object-cover" />
-                <div class="absolute inset-0 flex flex-col justify-end px-5 py-10">
-                    <div class="mb-1">
-                        <p class="text-base md:text-3xl xl:text-5xl">Advertising Campaigns</p>
-                    </div>
-                    <div class="mb-1">
-                        <p class="text-xs md:text-base">Management, execution, and organization of exhibitions and events that deliver unique and interactive experiences, focusing on building strong customer relationships and enhancing media presence and visibility.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="py-4 text-3xl">
-            <ul class="flex flex-col justify-start items-start gap-4 py-1 border-b border-gray-500">
-                <li class="flex items-center gap-2 hover:translate-x-8 transition-all ease-linear py-3">
-                    <img class="w-10 h-10 object-contain" src="./assets/services/Group 2001.png" alt="Award 1" />
-                    <span>Film Production</span>
-                </li>
-                <li class="flex items-center gap-2 hover:translate-x-8 transition-all ease-linear py-3">
-                    <img class="w-10 h-10 object-contain" src="./assets/services/Group 2002.png" alt="Award 2" />
-                    <span>Digital Marketing</span>
-                </li>
-                <li class="flex items-center gap-2 hover:translate-x-8 transition-all ease-linear py-3">
-                    <img class="w-10 h-10 object-contain" src="./assets/services//Group 2003.png" alt="Award 3" />
-                    <span>Creative Solutions</span>
-                </li>
-                <li class="flex items-center gap-2 hover:translate-x-8 transition-all ease-linear py-3">
-                    <img class="w-10 h-10 object-contain" src="./assets/services/Group 2004.png" alt="Award 4" />
-                    <span>Entertainment</span>
-                </li>
-                <li class="flex items-center gap-2 hover:translate-x-8 transition-all ease-linear py-3">
-                    <img class="w-10 h-10 object-contain" src="./assets/services/Group 2005.png" alt="Award 5" />
-                    <span>Brand Identity</span>
-                </li>
-                <li class="flex items-center gap-2 hover:translate-x-8 transition-all ease-linear py-3">
-                    <img class="w-10 h-10 object-contain" src="./assets/services/Group 2007.png" alt="Award 6" />
-                    <span>Strategies & Consulting</span>
-                </li>
-            </ul>
         </div>
 
+        <div class="py-10 px-5 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="relative group">
+                <img src="./assets/services/Group 2001.png" class="absolute top-3 left-3 w-10 h-10 z-20" alt="Top Left Icon" />
+                <img src="./assets/services/shutterstock_1483381934.png" class="object-cover h-64 w-full rounded-lg" />
+                <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/60 to-transparent px-5 py-10 rounded-lg transition-all duration-300 ease-in-out group-hover:pb-14">
+                    <div class="mb-1">
+                        <p class="text-lg md:text-2xl font-semibold text-white">Advertising Campaigns</p>
+                    </div>
+                    <div class="mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                        <p class="text-xs md:text-sm text-gray-300">
+                            Management, execution, and organization of exhibitions and events that deliver unique and interactive experiences, focusing on building strong customer relationships and enhancing media presence and visibility.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative group">
+                <img src="./assets/services/Group 2002.png" class="absolute top-3 left-3 w-10 h-10 z-20" alt="Top Left Icon" />
+                <img src="./assets/services/shutterstock_1483381934.png" class="object-cover h-64 w-full rounded-lg" />
+                <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/60 to-transparent px-5 py-10 rounded-lg transition-all duration-300 ease-in-out group-hover:pb-14">
+                    <div class="mb-1">
+                        <p class="text-lg md:text-2xl font-semibold text-white">Advertising Campaigns</p>
+                    </div>
+                    <div class="mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                        <p class="text-xs md:text-sm text-gray-300">
+                            Management, execution, and organization of exhibitions and events that deliver unique and interactive experiences, focusing on building strong customer relationships and enhancing media presence and visibility.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- List Section -->
+        <div class="py-4">
+            <ul class="flex flex-col gap-4 border-b border-gray-700">
+                @foreach (var item in new[]
+                {
+                new { Img = "./assets/services/Group 2001.png", Text = "Film Production" },
+                new { Img = "./assets/services/Group 2002.png", Text = "Digital Marketing" },
+                new { Img = "./assets/services/Group 2003.png", Text = "Creative Solutions" },
+                new { Img = "./assets/services/Group 2004.png", Text = "Entertainment" },
+                new { Img = "./assets/services/Group 2005.png", Text = "Brand Identity" },
+                new { Img = "./assets/services/Group 2007.png", Text = "Strategies & Consulting" }
+                })
+                {
+                    <li class="flex items-center gap-4 hover:translate-x-2 transition-all ease-linear py-3">
+                        <img class="w-10 h-10 object-contain" src="@item.Img" alt="@item.Text" />
+                        <span class="text-4xl text-white">@item.Text</span>
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
 </section>

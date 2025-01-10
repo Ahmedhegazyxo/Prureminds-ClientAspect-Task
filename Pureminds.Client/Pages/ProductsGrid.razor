@@ -1,102 +1,66 @@
-﻿@page "/ProductsGrid"
-@inject HttpClient Http
-@using System.Net.Http.Json
+﻿@page "/productsgrid"
+@inject HttpClient _client
+<Navbar />
+<div class="min-h-screen bg-[#02021C] text-white px-8 py-10">
+    <h1 class="text-6xl mb-8 text-center">Products</h1>
 
-<section class="container mx-auto p-10">
-    <h1 class="text-2xl font-bold text-center mb-6">Products Grid</h1>
-
-    <!-- Grid for displaying products -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-        @if (products != null && products.Any())
-        {
-            foreach (var product in products)
-            {
-                <div class="p-4 border border-gray-300 rounded-lg shadow-lg">
-                    <h2 class="text-lg font-semibold mb-2">@product.ProductTitle</h2>
-                    <p class="text-sm text-gray-600 mb-2">@product.Description</p>
-                    <p class="text-sm text-gray-600 mb-4">Attachments: @product.ProductAttachments?.Count ?? 0</p>
-                    <div class="flex justify-end">
-                        @* <button class="bg-red-500 text-white px-4 py-2 rounded" @onclick="() => DeleteProduct(product.Id)">Delete</button> *@
-                    </div>
-                </div>
-            }
-        }
-        else
-        {
-            <p class="text-center col-span-full text-gray-500">No products available.</p>
-        }
+    <!-- Add New Product Button -->
+    <div class="mb-6 text-right">
+        <button @onclick="()=>ShowForm(OperationType.Add , new Product())" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+            <i class="fas fa-plus"></i>
+        </button>
     </div>
 
-    <!-- Form to add a new product -->
-    <form class="max-w-lg mx-auto p-6 border border-gray-300 rounded-lg shadow-lg bg-white" @onsubmit="AddProduct">
-        <h2 class="text-xl font-semibold mb-4">Add New Product</h2>
+    <div class="overflow-x-auto bg-[#0F172A] rounded-lg shadow-lg p-6">
+        <table class="min-w-full border-collapse">
+            <thead class="bg-[#1E293B]">
+                <tr>
+                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Id</th>
+                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Product Title</th>
+                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Notes</th>
+                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (products is null || !products.Any())
+                {
+                    <Pureminds.Client.Components.ContentLoading />
+                }
+                else if (!products.Any())
+                {
+                    <tr>
+                        <td colspan="4" class="text-center py-4 text-gray-500">No products found.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var product in products)
+                    {
+                        <tr class="hover:bg-[#1E293B] transition">
+                            <td class="py-3 px-4 border-t border-gray-700">@product.Id</td>
+                            <td class="py-3 px-4 border-t border-gray-700 whitespace-nowrap">@product.ProductTitle</td>
+                            <td class="py-3 px-4 border-t border-gray-700">@product.Notes</td>
+                            <td class="py-3 px-4 border-t border-gray-700 flex flex-nowrap gap-1">
+                                <button @onclick="() => ShowForm(OperationType.Edit,product)" class="bg-yellow-500 text-white py-1 px-3 rounded hover:bg-yellow-600">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button @onclick="() => ShowForm(OperationType.Info,product)" class="bg-gray-500 text-white py-1 px-3 rounded hover:bg-gray-600">
+                                    <i class="fas fa-info"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
 
-        <div class="mb-4">
-            <label for="title" class="block text-sm font-medium text-gray-700">Product Title</label>
-            <input id="title" type="text" class="mt-1 block w-full border border-gray-300 rounded p-2" @bind="newProduct.ProductTitle" required />
-        </div>
-
-        <div class="mb-4">
-            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-            <textarea id="description" class="mt-1 block w-full border border-gray-300 rounded p-2" @bind="newProduct.Description"></textarea>
-        </div>
-
-        <div class="mb-4">
-            <label for="fileUpload" class="block text-sm font-medium text-gray-700">Upload Attachment</label>
-            <input id="fileUpload" type="file" class="mt-1 block w-full" @onchange="HandleFileUpload" />
-        </div>
-
-        <div class="flex justify-end">
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save Product</button>
-        </div>
-    </form>
-</section>
-
-@code {
-    private List<Product> products = new();
-    private Product newProduct = new();
-    private ProductAttachment? uploadedAttachment;
-
-    protected override async Task OnInitializedAsync()
+    @if (isModalOpen)
     {
-        await LoadProducts();
+        <Pureminds.Client.Components.ProductForm OperationType="@operationType"
+                                                 Title="@modalTitle"
+                                                 Source="@source"
+                                                 OnCancelCallback="@FormCancelled" />
     }
+</div>
 
-    private async Task LoadProducts()
-    {
-        products = await Http.GetFromJsonAsync<List<Product>>("api/products") ?? new List<Product>();
-    }
-
-    private async Task AddProduct()
-    {
-        if (!string.IsNullOrEmpty(newProduct.ProductTitle))
-        {
-            if (uploadedAttachment != null)
-            {
-                newProduct.ProductAttachments = new List<ProductAttachment> { uploadedAttachment };
-            }
-
-            var response = await Http.PostAsJsonAsync("api/products", newProduct);
-            if (response.IsSuccessStatusCode)
-            {
-                newProduct = new Product();
-                uploadedAttachment = null;
-                await LoadProducts();
-            }
-        }
-    }
-
-    private async Task HandleFileUpload(ChangeEventArgs e)
-    {
-        var inputFile = e.Value as Microsoft.AspNetCore.Components.Forms.IBrowserFile;
-
-        if (inputFile != null)
-        {
-            using var memoryStream = new MemoryStream();
-            await inputFile.OpenReadStream().CopyToAsync(memoryStream);
-
-            
-        }
-    }
-
-}

@@ -3,9 +3,11 @@
 public class ProductService : BaseService<Product>, IProductService
 {
     MigrationsDbContext _context;
-    public ProductService(MigrationsDbContext context) : base(context)
+    IAttachmentService _attachmentService;
+    public ProductService(MigrationsDbContext context, IAttachmentService attachmentService) : base(context)
     {
         _context = context;
+        _attachmentService = attachmentService;
     }
 
     public Task<List<Product>> GetProductsWithAttachments()
@@ -24,21 +26,42 @@ public class ProductService : BaseService<Product>, IProductService
         var transaction = _context.Database.BeginTransaction();
         try
         {
-            if (entity.ProductAttachments is not null && entity.ProductAttachments.Count() > 0)
+            if (entity.ProductAttachments is not null && entity.ProductAttachments.Count() != 0)
             {
-
-                List<ProductAttachment> productAttachments = entity.ProductAttachments;
-                foreach (ProductAttachment attachment in productAttachments)
+                List<Attachment>? attachments = new List<Attachment>();
+                foreach (ProductAttachment productAttachment in entity.ProductAttachments)
                 {
-                    await _context.Set<ProductAttachment>().AddAsync(attachment);
+                    if (productAttachment.Attachment is not null)
+                        attachments.Add(productAttachment.Attachment);
                 }
+                entity.ProductAttachments = null;
+                entity = await base.Create(entity);
+                attachments = await _attachmentService.CreateBulk(attachments, transaction);
+                foreach(Attachment attachment in attachments)
+                {
+                    await _context.Set<ProductAttachment>().AddAsync(new ProductAttachment
+                    {
+                        ProductId = entity.Id,
+                        AttachmentId = attachment.Id,
+                        Attachment = null
+                    });
+                }
+                if (transaction is not null)
+                {
+                    await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
+
+                }
+                else
+                    await transaction.RollbackAsync();
+                return entity;
             }
-            if (transaction is not null)
-                await transaction.CommitAsync();
             else
-                await transaction.RollbackAsync();
-            entity.ProductAttachments = null;
-            return await base.Create(entity);
+            {
+                entity = await base.Create(entity);
+                await transaction.CommitAsync();
+                return entity;
+            }
         }
         catch (Exception exception)
         {

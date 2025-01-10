@@ -1,7 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
-
-namespace Pureminds.Server;
+﻿namespace Pureminds.Server;
 
 public class ProjectRequestService : BaseService<ProjectRequest>, IProjectRequestService
 {
@@ -27,6 +24,7 @@ public class ProjectRequestService : BaseService<ProjectRequest>, IProjectReques
                 {
                     Attachment attachment = await _attachmentService.Create(requestAttachment);
                     entity.AttachmentId = attachment.Id;
+                    entity = await base.Create(entity);
                 }
                 else
                 {
@@ -35,6 +33,7 @@ public class ProjectRequestService : BaseService<ProjectRequest>, IProjectReques
                 if (transaction is not null)
                 {
                     await transaction.CommitAsync();
+                    await _context.SaveChangesAsync();
                 }
                 else
                     await transaction.RollbackAsync();
@@ -45,7 +44,6 @@ public class ProjectRequestService : BaseService<ProjectRequest>, IProjectReques
                     MailSubject = "Project Request Suggestion",
                     MailBody = $"Hi{entity.ClientName}, Thanks for delegating suggested project" +
                     $", Please follow up your e-mail or phone number ({entity.ClientPhoneNumber}) for further notice."
-
                 });
                 return entity;
             }
@@ -56,6 +54,18 @@ public class ProjectRequestService : BaseService<ProjectRequest>, IProjectReques
             }
         }
         catch (Exception exception)
+        {
+            throw exception;
+        }
+    }
+
+    public async Task<ProjectRequest> ReadByIdWithIncludes(int id)
+    {
+        try
+        {
+            return await _context.Set<ProjectRequest>().Where(e=>e.Id == id).Include(e=>e.ProjectRequestAttachment).FirstAsync();
+        }
+        catch(Exception exception)
         {
             throw exception;
         }

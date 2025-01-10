@@ -7,4 +7,16 @@ public class ProjectRequestsController : BaseController<ProjectRequest>
     {
         _service = service;
     }
+    [HttpGet("GetProjectRequestWithIncludes/{id}")]
+    public async Task<ProjectRequest> GetProjectRequestWithIncludes(int id)
+    {
+        try
+        {
+            return await _service.ReadByIdWithIncludes(id);
+        }
+        catch(Exception exception)
+        {
+            throw exception;
+        }
+    }
 }

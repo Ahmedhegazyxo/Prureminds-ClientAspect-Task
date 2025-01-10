@@ -11,13 +11,9 @@ public partial class PuremindsButton
     [Parameter]
     public bool IsHideInSmallScreens { get; set; }
     [Parameter]
-    public Func<Task>? OnClick { get; set; }
+    public EventCallback Clicked { get; set; }
     private async Task ButtonClicked()
     {
-        if (OnClick is not null)
-        {
-
-            await OnClick.Invoke();
-        }
+        await Clicked.InvokeAsync();
     }
 }

@@ -24,4 +24,8 @@ public partial class Home
     {
         _nvmgr.NavigateTo($"/relevantquestions/{id}");
     }
+    private void NavigateToAllServices()
+    {
+        _nvmgr.NavigateTo($"/Services");
+    }
 }

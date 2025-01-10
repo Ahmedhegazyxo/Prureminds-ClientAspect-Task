@@ -1,11 +1,11 @@
-﻿@page "/project-submissions"
+﻿@page "/projectsubmissions"
 @inject HttpClient _client
 @inject IJSRuntime _jsruntime
 
 
 <Navbar />
 <div class="min-h-screen bg-[#02021C] text-white px-8 py-10">
-    <h1 class="text-4xl mb-8 text-center">Saved Project Submissions</h1>
+    <h1 class="text-6xl mb-8 text-center">Project Submissions</h1>
     <div class="overflow-x-auto bg-[#0F172A] rounded-lg shadow-lg p-6">
         <table class="min-w-full border-collapse">
             <thead class="bg-[#1E293B]">
@@ -16,8 +16,7 @@
                     <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Company</th>
                     <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Start Date</th>
                     <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Budget</th>
-                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Brief</th>
-                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Attachment</th>
+                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Operations</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,13 +35,18 @@
                     @foreach (var submission in submissions)
                     {
                         <tr class="hover:bg-[#1E293B] transition">
-                            <td class="py-3 px-4 border-t border-gray-700">@submission.ClientName</td>
+                            <td class="py-3 px-4 border-t border-gray-700 whitespace-nowrap">@submission.ClientName</td>
                             <td class="py-3 px-4 border-t border-gray-700">@submission.ClientEmail</td>
                             <td class="py-3 px-4 border-t border-gray-700">@submission.ClientPhoneNumber</td>
                             <td class="py-3 px-4 border-t border-gray-700">@submission.ClientCompany</td>
                             <td class="py-3 px-4 border-t border-gray-700">@submission.SuggestedStartDate?.ToString("yyyy-MM-dd")</td>
-                            <td class="py-3 px-4 border-t border-gray-700">
+                            <td class="py-3 px-4 border-t border-gray-700 whitespace-nowrap">
                                 @submission.BudgetStartLimit SAR - @submission.BudgetEndLimit SAR
+                            </td>
+                            <td class="py-3 px-4 border-t border-gray-700 flex flex-nowrap gap-1 justify-center">
+                                <button @onclick="() => ShowForm(OperationType.Info,submission)" class="bg-gray-500 text-white py-1 px-3 rounded hover:bg-gray-600">
+                                    <i class="fas fa-info"></i>
+                                </button>
                             </td>
                         </tr>
                     }
@@ -50,22 +54,11 @@
             </tbody>
         </table>
     </div>
-</div>
-
-@code {
-    private List<ProjectRequest>? submissions;
-
-    protected override async Task OnInitializedAsync()
+    @if (isModalOpen)
     {
-        try
-        {
-            submissions = await _client.GetFromJsonAsync<List<ProjectRequest>>("api/ProjectRequests");
-        }
-        catch (Exception exception)
-        {
-            Console.WriteLine(exception.Message);
-        }
-        await base.OnInitializedAsync();
+        <Pureminds.Client.Components.ProjectSubmissionsForm  OperationType="@operationType"
+        Source="@source"
+        Title="@modalTitle"
+        OnCancelCallback="@FormCancelled"/>
     }
-
-}
+</div>

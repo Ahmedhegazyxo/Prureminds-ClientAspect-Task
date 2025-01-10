@@ -1,0 +1,105 @@
+﻿@inject HttpClient _client
+@inject IJSRuntime JS
+@namespace Pureminds.Client.Components
+<head>
+    <script>
+        window.downloadFileFromBytes = function (fileName, byteBase64) {
+            const byteCharacters = atob(byteBase64);
+            const byteNumbers = new Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+
+            const blob = new Blob([byteArray]);
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = fileName;
+            link.click();
+        };
+    </script>
+</head>
+<EditForm Model="@Source" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        @if (isSourceLoading)
+        {
+            <ContentLoading />
+        }
+        else
+        {
+            <div class="bg-[#0F172A] text-white rounded-lg shadow-lg p-8 w-[600px]">
+                <h2 class="text-2xl font-bold mb-6 text-center">@Title</h2>
+
+
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                    <div>
+                        <label for="clientName" class="block text-sm font-medium text-gray-300">Name</label>
+                        <InputText id="clientName"
+                                   class="w-full border border-gray-700 bg-[#1E293B] text-white rounded py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500"
+                                   @bind-Value="Source.ClientName" disabled />
+                    </div>
+
+                    <div>
+                        <label for="phoneNumber" class="block text-sm font-medium text-gray-300">PhoneNumber</label>
+                        <InputText id="phoneNumber"
+                                   class="w-full border border-gray-700 bg-[#1E293B] text-white rounded py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500"
+                                   @bind-Value="Source.ClientPhoneNumber" disabled />
+                    </div>
+                    <div>
+                        <label for="Email" class="block text-sm font-medium text-gray-300">Email</label>
+                        <InputText id="Email"
+                                   class="w-full border border-gray-700 bg-[#1E293B] text-white rounded py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500"
+                                   @bind-Value="Source.ClientEmail" disabled />
+                    </div>
+                    <div>
+                        <label for="company" class="block text-sm font-medium text-gray-300">Company</label>
+                        <InputText id="company"
+                                   class="w-full border border-gray-700 bg-[#1E293B] text-white rounded py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500"
+                                   @bind-Value="Source.ClientCompany" disabled />
+                    </div>
+                    <div>
+                        <label for="startDate" class="block text-sm font-medium text-gray-300">Suggested launch date</label>
+                        <InputDate id="startDate"
+                                   class="w-full border border-gray-700 bg-[#1E293B] text-white rounded py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500"
+                                   @bind-Value="Source.SuggestedStartDate" disabled />
+                    </div>
+                </div>
+                <div class="p-2">
+                    <label for="Biref" class="block text-sm font-medium text-gray-300">Project brief </label>
+                    <InputTextArea id="startDate"
+                                   class="w-full border border-gray-700 bg-[#1E293B] text-white rounded py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500"
+                                   @bind-Value="Source.ProjectBrief" disabled />
+                </div>
+                <div class="p-2 border-b border-gray-300">
+                    <label for="Biref" class="block text-sm font-medium text-gray-300">Notes</label>
+                    <InputTextArea id="startDate"
+                                   class="w-full border border-gray-700 bg-[#1E293B] text-white rounded py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500"
+                                   @bind-Value="Source.ProjectBrief" disabled />
+                </div>
+                @if (Source.ProjectRequestAttachment is not null)
+                {
+                    <div class="mt-4 flex items-center gap-4 p-2">
+                        <label for="Biref" class="block text-base font-medium text-gray-300">Project attachment</label>
+
+                        <a 
+                           @onclick="()=> DownloadAttachment(Source.ProjectRequestAttachment)"
+                           class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg shadow transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
+                            <i class="fas fa-download mr-2"></i>
+                        </a>
+                    </div>
+                }
+
+
+                <div class="mt-6 text-right">
+                    <button type="button"
+                            @onclick="OnCancel"
+                            class="ml-3 bg-gray-500 text-white py-2 px-6 rounded hover:bg-gray-600 transition">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</EditForm>
