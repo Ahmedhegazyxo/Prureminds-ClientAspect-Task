@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pureminds.Shared;
 
@@ -12,5 +14,7 @@ public class Product : BaseEntity
     public string Description { get; set; }
     public bool IsPrioritized { get; set; }
     public List<ProductAttachment>? ProductAttachments { get; set; }
+    [NotMapped]
+    public string? ProductImageBase64 { get; set; } 
 
 }

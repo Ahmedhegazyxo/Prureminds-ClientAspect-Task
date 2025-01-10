@@ -7,14 +7,13 @@ public partial class CompanyProjectsExtension
     {
         try
         {
-            products = await _client.GetFromJsonAsync<List<Product>>("api/products/GetProductsWithAttachments");
+            products = await _client.GetFromJsonAsync<List<Product>>("api/products");
+
         }
         catch (Exception excpetion)
         {
             Console.WriteLine(excpetion.Message);
         }
-        await InvokeAsync(StateHasChanged);
         await base.OnInitializedAsync();
     }
-
 }

@@ -10,17 +10,23 @@ public class ProductService : BaseService<Product>, IProductService
         _attachmentService = attachmentService;
     }
 
-    public Task<List<Product>> GetProductsWithAttachments()
+    public async Task<List<Product>> GetProductsWithAttachments()
     {
         try
         {
-            return _context.Set<Product>().Include(e => e.ProductAttachments).ToListAsync();
+            var products = await _context.Set<Product>()
+                .Include(e => e.ProductAttachments)
+                .ThenInclude(e => e.Attachment)
+                .ToListAsync();
+
+            return products;
         }
         catch (Exception exception)
         {
             throw exception;
         }
     }
+
     public override async Task<Product> Create(Product entity)
     {
         var transaction = _context.Database.BeginTransaction();
@@ -37,7 +43,7 @@ public class ProductService : BaseService<Product>, IProductService
                 entity.ProductAttachments = null;
                 entity = await base.Create(entity);
                 attachments = await _attachmentService.CreateBulk(attachments, transaction);
-                foreach(Attachment attachment in attachments)
+                foreach (Attachment attachment in attachments)
                 {
                     await _context.Set<ProductAttachment>().AddAsync(new ProductAttachment
                     {
