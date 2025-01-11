@@ -27,7 +27,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 p-8 items-start">
             <div class="mt-16 text-center">
                 <div class="flex justify-start  flex-col md:flex-row items-center mb-4">
-                    <div class="w-60 h-30 rounded-full flex  justify-center items-start">
+                    <div class="rounded-full flex  justify-center items-start">
                         <img src="./assets/icons/Group 2199.png" alt="Develop Icon">
                     </div>
                     <h2 class="ml-4 text-6xl font-bold">Develop</h2>
@@ -45,8 +45,8 @@
             </div>
 
             <div class="mt-16 text-center">
-                <div class="flex justify-start items-center mb-8">
-                    <div class="w-60 h-30  rounded-full flex justify-center items-center">
+                <div class="flex flex-col md:flex-row justify-start items-center mb-8">
+                    <div class="flex   rounded-full  justify-center items-center">
                         <img src="./assets/icons/Group 2201.png" alt="Support Icon">
                     </div>
                     <h2 class="ml-4 text-6xl font-bold">Support</h2>
@@ -65,13 +65,13 @@
 
             <div class="mt-16 text-center">
                 <div class="flex flex-col md:flex-row justify-start items-center mb-8">
-                    <div class="w-30 h-30  rounded-full flex justify-center items-center">
+                    <div class="rounded-full flex justify-center items-center">
                         <img src="./assets/icons/Group 2210.png" alt="Design Icon">
                     </div>
                     <h2 class="ml-4 text-6xl font-bold">Design</h2>
                 </div>
 
-                <div class="flex flex-col md:flex-row justify-end">
+                <div class="flex  justify-end">
                     <ul class="text-lg space-y-4 list-decimal list-outside border-l-2 border-gray-300 pl-8">
                         @foreach (ProvidedProvision provision in provisions.Where(e => e.WebsiteSectionId == 3))
                         {
