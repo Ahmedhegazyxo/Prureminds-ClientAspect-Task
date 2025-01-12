@@ -7,6 +7,7 @@ public partial class ProjectRequestForm
     private ProjectRequest source = new();
     List<ProvidedProvision>? providedProvisions;
     bool isSubmittedSuccessfully = false;
+    bool isSubmitButtonPressed = false;
     private string submittedMessage = string.Empty;
     private string successMessage = "Your project request was successfully submitted!";
     private int charIndex = 0;
@@ -26,6 +27,7 @@ public partial class ProjectRequestForm
     {
         try
         {
+            isSubmitButtonPressed = true;
             await _client.PostAsJsonAsync<ProjectRequest>("api/ProjectRequests", source);
             isSubmittedSuccessfully = true;
             await StartTypeWriterEffect(successMessage);
@@ -33,6 +35,7 @@ public partial class ProjectRequestForm
         catch (Exception exception)
         {
             Console.WriteLine(exception.Message);
+            isSubmitButtonPressed = false;
         }
     }
     private async Task StartTypeWriterEffect(string text)

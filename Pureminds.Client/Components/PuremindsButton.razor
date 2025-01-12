@@ -1,36 +1,44 @@
 ﻿@if (!IsHideInSmallScreens)
 {
     <div>
-        <p class="overflow-hidden bg-white text-black px-4 py-3 rounded-3xl h-[45px] text-sm md:text-base">
-            <span class="group-hover:-translate-y-10 block transition-all ease-linear duration-300">
-                @LongButtonText
-            </span>
-            <span class="translate-y-10 group-hover:-translate-y-6 block transition-all ease-linear duration-300">
-                @LongButtonText
-            </span>
-        </p>
-    </div>
-    <div class="flex gap-2">
-        <button class="bg-blue-500 w-12 h-12 flex items-center justify-center group-hover:scale-110 rounded-full transition-all group-hover:rotate-45" onclick="@ButtonClicked">
-            <img src="./assets/svgs/Mask Group 1.png" alt="logo" />
+        <button onclick="@ButtonClicked" class="flex gap-2">
+            <div>
+                <p class="overflow-hidden bg-white text-black px-3 pt-3 pb-4 rounded-3xl h-[45px] text-sm md:text-base">
+                    <span class="group-hover:-translate-y-10 block transition-all ease-linear duration-300">
+                        @LongButtonText
+                    </span>
+                    <span class="translate-y-10 group-hover:-translate-y-6 block transition-all ease-linear duration-300">
+                        @LongButtonText
+                    </span>
+                </p>
+            </div>
+            <div class="flex gap-2">
+                <div class="bg-blue-500 w-12 h-12 flex items-center justify-center group-hover:scale-110 rounded-full transition-all group-hover:rotate-45">
+                    <img src="./assets/svgs/Mask Group 1.png" alt="logo" />
+                </div>
+            </div>
         </button>
     </div>
 }
 else
 {
     <div class="hidden md:block">
-        <p class="overflow-hidden bg-white text-black px-4 py-3 rounded-3xl h-[45px]">
-            <span class="group-hover:-translate-y-10 block transition-all ease-linear duration-300">
-                @LongButtonText
-            </span>
-            <span class="translate-y-10 group-hover:-translate-y-6 block transition-all ease-linear duration-300">
-                @LongButtonText
-            </span>
-        </p>
-    </div>
-    <div class="flex gap-2 hidden md:block">
-        <button class="bg-blue-500 w-12 h-12 flex items-center justify-center group-hover:scale-110 rounded-full transition-all group-hover:rotate-45" onclick="@ButtonClicked">
-            <img src="./assets/svgs/Mask Group 1.png" alt="logo" />
+        <button onclick="@ButtonClicked">
+            <div>
+                <p class="overflow-hidden bg-white text-black px-3 pt-3 pb-4 rounded-3xl h-[45px] text-sm md:text-base">
+                    <span class="group-hover:-translate-y-10 block transition-all ease-linear duration-300">
+                        @LongButtonText
+                    </span>
+                    <span class="translate-y-10 group-hover:-translate-y-6 block transition-all ease-linear duration-300">
+                        @LongButtonText
+                    </span>
+                </p>
+            </div>
+            <div class="flex gap-2">
+                <div class="bg-blue-500 w-12 h-12 flex items-center justify-center group-hover:scale-110 rounded-full transition-all group-hover:rotate-45">
+                    <img src="./assets/svgs/Mask Group 1.png" alt="logo" />
+                </div>
+            </div>
         </button>
     </div>
 }

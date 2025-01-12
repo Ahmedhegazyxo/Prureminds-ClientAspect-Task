@@ -83,9 +83,11 @@
                     <div class="mt-4 flex items-center gap-4 p-2">
                         <label for="Biref" class="block text-base font-medium text-gray-300">Project attachment</label>
 
-                        <a 
-                           @onclick="()=> DownloadAttachment(Source.ProjectRequestAttachment)"
+                        <a @onclick="()=> DownloadAttachment(Source.ProjectRequestAttachment)"
                            class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg shadow transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
+                            <p class="text-center text-white text-semibold px-2">
+                                Download
+                            </p>
                             <i class="fas fa-download mr-2"></i>
                         </a>
                     </div>

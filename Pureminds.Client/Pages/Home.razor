@@ -10,7 +10,7 @@
         <Navbar />
     </div>
     <div class="w-full">
-        <video class="w-full  object-cover" autoplay>
+        <video class="w-full  object-cover" autoplay loop>
             <source src="./assets/1725973084308.1736384901338.publer.io.mp4" type="video/mp4">
         </video>
     </div>
@@ -61,11 +61,11 @@
         </div>
     </section>
     <Breif />
-    <Pureminds.Client.Components.CompanyProjectsExtension />
+    <Pureminds.Client.Components.CompanyProjectsExtension IsInsideThePage="@false" />
     @if (relevantQuestions is not null)
     {
-        <div class="p-5 flex gap-4">
-            <div class="text-center text-5xl">
+        <div class="p-5 flex flex-col lg:flex-row gap-4">
+            <div class="text-center text-6xl">
                 <p>
                     The answers to your questions.
                 </p>
@@ -75,8 +75,7 @@
                     @foreach (RelevantQuestion relevantQuestion in relevantQuestions)
                     {
                         <li @onclick="() => NavigateToQuestion(relevantQuestion.Id)"
-                            class="border-b border-gray-300 bg-gray-900 hover:bg-gray-700  hover:translate-x-3 transition-all ease-linear pb-2  rounded-lg p-3 cursor-pointer
-                       transition-colors duration-200 ease-linear">
+                            class="border-b border-gray-300 bg-gray-900 hover:bg-gray-700  hover:translate-x-3 transition-all ease-linear pb-2  rounded-lg p-3 cursor-pointer">
                             <p class="text-center text-black-950 text-lg"> @relevantQuestion.QuestionDesceiption</p>
                         </li>
                     }

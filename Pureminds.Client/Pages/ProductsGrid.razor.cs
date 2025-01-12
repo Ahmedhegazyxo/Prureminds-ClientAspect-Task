@@ -1,4 +1,6 @@
-﻿namespace Pureminds.Client.Pages;
+﻿using Pureminds.Shared;
+
+namespace Pureminds.Client.Pages;
 
 public partial class ProductsGrid
 {
@@ -14,7 +16,7 @@ public partial class ProductsGrid
     {
         try
         {
-            products = await _client.GetFromJsonAsync<List<Product>>("api/products");
+            await LoadProducts();
         }
         catch (Exception exception)
         {
@@ -37,19 +39,34 @@ public partial class ProductsGrid
         {
             modalTitle = "Edit Product";
         }
-        else if(opType == OperationType.Info)
+        else if (opType == OperationType.Info)
         {
             modalTitle = "Details";
         }
     }
 
-    private void CloseModal()
+    private void FormCancelled()
     {
         isModalOpen = false;
     }
-    private async Task FormCancelled()
+    private async void FormSubmitted()
     {
         isModalOpen = false;
+        products = null;
+        isModalOpen = false;
+        await LoadProducts();
         await InvokeAsync(StateHasChanged);
     }
+    private async Task LoadProducts()
+    {
+        try
+        {
+            products = await _client.GetFromJsonAsync<List<Product>>("api/products");
+        }
+        catch (Exception exception)
+        {
+            throw exception;
+        }
+    }
+  
 }

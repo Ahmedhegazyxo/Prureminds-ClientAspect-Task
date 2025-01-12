@@ -1,42 +1,46 @@
 ﻿@inject HttpClient _client
+@inject NavigationManager _nvmgr
+<div class="py-4">
+    @if (!IsInsideThePage)
+    {
 
-<h2 class="text-xl font-semibold text-center mb-8">See what we've been working on</h2>
+        <div class="flex flex-col md:flex-row justify-center gap-2 group">
+            <h2 class="text-4xl text-center mb-8">See what we've been working on</h2>
+            <PuremindsButton Clicked="@NavigateToWork" LongButtonText="See all work!" />
+        </div>
+    }
 
-@if (products is not null && products.Count() != 0)
-{
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-10">
-        @foreach (Product product in products)
-        {
-            @if (product.ProductAttachments is not null && product.ProductAttachments.Count() > 0)
+    @if (products is not null && products.Count() != 0)
+    {
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-10">
+            @foreach (Product product in products)
             {
+                {
 
-                <div class="relative bg-gradient-to-b from-[#1E293B] to-[#0F172A] p-4 rounded-lg overflow-hidden hover:scale-105 transition-all ease-linear">
-                    <img src="./assets/projects/Group 1270.png" alt="Card 1" class="w-full rounded-lg">
-                    <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
-                        <p class="text-sm opacity-90 text-white">@product.ProductTitle</p>
-                        <div class="flex mt-2 space-x-2"></div>
+                    <div class="relative bg-gradient-to-b from-[#00152A] to-[#00152A] p-4 rounded-lg overflow-hidden hover:scale-105 transition-all ease-linear">
+                        @if (product.Notes is not null && product.Notes != string.Empty)
+                        {
+                            <img src="@product.Notes" alt="Card 1" class="w-full rounded-lg">
+                        }
+                        else
+                        {
+                            <img src="./assets/projects/Group 1270.png" alt="Card 1" class="w-full rounded-lg">
+                        }
+                        <div class="absolute inset-0 flex flex-col justify-start p-4 bg-gradient-to-t from-black/50 to-transparent">
+                            <p class="text-lg opacity-90 text-center font-bold text-white">@product.ProductTitle</p>
+                            <div class="flex mt-2 space-x-2"></div>
+                        </div>
                     </div>
-                </div>
-
+                }
             }
-            else
-            {
-                <div class="relative bg-gradient-to-b from-[#1E293B] to-[#0F172A] p-4 rounded-lg overflow-hidden hover:scale-105 transition-all ease-linear">
-                    <img src="./assets/projects/Group 1270.png" alt="Card 1" class="w-full rounded-lg">
-                    <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
-                        <p class="text-sm opacity-90 text-white">@product.ProductTitle</p>
-                        <div class="flex mt-2 space-x-2"></div>
-                    </div>
-                </div>
-            }
-        }
-    </div>
-}
-else
-{
-    <ContentLoading />
-}
+        </div>
+    }
+    else
+    {
+        <ContentLoading />
+    }
 
-<p class="text-center mt-8">
-    Do you feel ready? <a href="projectrequests" class="text-blue-400 underline">Let's work together</a>
-</p>
+    <p class="text-center mt-8">
+        Do you feel ready? <a href="projectrequests" class="text-blue-400 underline">Let's work together</a>
+    </p>
+</div>

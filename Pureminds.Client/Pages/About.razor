@@ -1,69 +1,71 @@
 ﻿@page "/about"
 @using Pureminds.Shared
-<section class="mx-auto text-center">
-    <Navbar />
-    <h1 class="text-4xl md:text-5xl font-bold mb-4">We're here to make <br> your design dreams <br> come true.</h1>
-    <a href="#" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded">Learn about Us</a>
-</section>
+<Navbar />
+<div class="px-2">
+    <section class="mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">We're here to make <br> your design dreams <br> come true.</h1>
+        <a href="#" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded">Learn about Us</a>
+    </section>
 
-<section class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 py-16">
-    <div>
-        <h1 class="zoom-in-effect text-4xl md:text-5xl">
-            Welcome to
-            <span class="highlight" style="color: #0099de"> Pureminds </span>, a leading media production company dedicated to creating captivating visual experiences.
-        </h1>
-    </div>
-    <div class="space-y-4">
-        <div class=" p-6 rounded shadow">
-            <p style="color: #5d7686">
-                We are an Award-Winning Lorem ipsum <span class="underline" style="color: #98c0d8">Advertising Campaigns</span>, <span class="underline" style="color: #98c0d8">
-                    Exhibitions &
-                    Events
-                </span> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad <span class="underline" style="color: #98c0d8">Branding</span> veniam, quis nostrud exercitation
-                We are an Award-Winning Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad<br /><br />
-
-                We are an Award-Winning Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                <span class="underline" style="color: #98c0d8">Film Production</span> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation
-            </p>
+    <section class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 py-16">
+        <div>
+            <h1 class="zoom-in-effect text-4xl md:text-5xl">
+                Welcome to
+                <span class="highlight" style="color: #0099de"> Pureminds </span>, a leading media production company dedicated to creating captivating visual experiences.
+            </h1>
         </div>
-    </div>
-</section>
+        <div class="space-y-4">
+            <div class=" p-6 rounded shadow">
+                <p style="color: #5d7686">
+                    We are an Award-Winning Lorem ipsum <span class="underline" style="color: #98c0d8">Advertising Campaigns</span>, <span class="underline" style="color: #98c0d8">
+                        Exhibitions &
+                        Events
+                    </span> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                    enim ad <span class="underline" style="color: #98c0d8">Branding</span> veniam, quis nostrud exercitation
+                    We are an Award-Winning Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad<br /><br />
 
-<section class="container mx-auto py-16 mt-10">
-    <div class="relative">
-        <div class="relative p-4 rounded-lg overflow-hidden w-full">
-            <img src="./assets/cards/Group 528.png" alt="Card 1" class="w-full rounded-lg">
-            <div class="absolute top-2 right-5 flex flex-col justify-end p-4 hover:-translate-x-2 transition-all ease-linear opacity-80 hover:opacity-100">
-                <img src="./assets/cards/Group 2240 25%.png" alt="Card 1" class="w-full rounded-lg block md:hidden">
-                <img src="./assets/cards/Group 2240 50%.png" alt="Card 1" class="w-full rounded-lg hidden md:block">
+                    We are an Award-Winning Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    <span class="underline" style="color: #98c0d8">Film Production</span> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    minim veniam, quis nostrud exercitation
+                </p>
             </div>
         </div>
+    </section>
 
-        <h3 class="text-6xl lg:text-[80px] font-bold max-w-[600px] w-full mx-auto mt-20 text-blance">
-            A range of personalities,
-            <br />devoid of egos
-        </h3>
+    <section class="container mx-auto py-16 mt-10">
+        <div class="relative">
+            <div class="relative p-4 rounded-lg overflow-hidden w-full">
+                <img src="./assets/cards/Group 528.png" alt="Card 1" class="w-full rounded-lg">
+                <div class="absolute top-2 right-5 flex flex-col justify-end p-4 hover:-translate-x-2 transition-all ease-linear opacity-80 hover:opacity-100">
+                    <img src="./assets/cards/Group 2240 1.png" alt="Card 1" class="w-full rounded-lg block md:hidden">
+                    <img src="./assets/cards/Group 2240 2.png" alt="Card 1" class="w-full rounded-lg hidden md:block">
+                </div>
+            </div>
 
-        <div class="mt-20 even:mt-10 flex gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-            @foreach (Employee employee in employees)
-            {
-                <div class="relative p-4 rounded-lg overflow-hidden w-[300px] h-[400px] hover:scale-105 transition-all ease-linear">
-                    <img src="@employee.Notes" alt="Card 2" class="w-full rounded-lg">
-                    <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
-                        <div class=" flex flex-col mt-2 space-x-2 justify-start">
-                            <p class="font-bold">@employee.Name</p>
-                            <p>@employee.JobDescription</p>
+            <h3 class="text-6xl lg:text-[80px] font-bold max-w-[600px] w-full mx-auto mt-20 text-blance">
+                A range of personalities,
+                <br />devoid of egos
+            </h3>
+
+            <div class="mt-20 even:mt-10 flex gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                @foreach (Employee employee in employees)
+                {
+                    <div class="relative p-4 rounded-lg overflow-hidden w-[300px] h-[400px] hover:scale-105 transition-all ease-linear">
+                        <img src="@employee.Notes" alt="Card 2" class="w-full rounded-lg">
+                        <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
+                            <div class=" flex flex-col mt-2 space-x-2 justify-start">
+                                <p class="font-bold">@employee.Name</p>
+                                <p>@employee.JobDescription</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
+                }
 
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 @code
 {
     List<Employee> employees = new();
@@ -93,7 +95,7 @@
                 JobDescription = "PMO Management",
                 Notes = "./assets/board/Walid Rajab.png"
             });
-            employees.Add(new Employee
+        employees.Add(new Employee
             {
                 Name = "Nawal Anber",
                 JobDescription = "Interactive Technology Management",
@@ -103,4 +105,4 @@
 
         base.OnInitialized();
     }
-}
+    }

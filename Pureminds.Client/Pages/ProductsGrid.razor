@@ -17,7 +17,8 @@
                 <tr>
                     <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Id</th>
                     <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Product Title</th>
-                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Notes</th>
+                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Image Path</th>
+                    <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Prioritized</th>
                     <th class="text-left py-3 px-4 text-sm font-semibold text-gray-300">Operations</th>
                 </tr>
             </thead>
@@ -40,6 +41,9 @@
                             <td class="py-3 px-4 border-t border-gray-700">@product.Id</td>
                             <td class="py-3 px-4 border-t border-gray-700 whitespace-nowrap">@product.ProductTitle</td>
                             <td class="py-3 px-4 border-t border-gray-700">@product.Notes</td>
+                            <td class="py-3 px-4 border-t border-gray-700">
+                                <input type="checkbox" checked="@product.IsPrioritized" disabled class="form-checkbox h-5 w-5 text-blue-600">
+                            </td>
                             <td class="py-3 px-4 border-t border-gray-700 flex flex-nowrap gap-1">
                                 <button @onclick="() => ShowForm(OperationType.Edit,product)" class="bg-yellow-500 text-white py-1 px-3 rounded hover:bg-yellow-600">
                                     <i class="fas fa-edit"></i>
@@ -60,7 +64,8 @@
         <Pureminds.Client.Components.ProductForm OperationType="@operationType"
                                                  Title="@modalTitle"
                                                  Source="@source"
-                                                 OnCancelCallback="@FormCancelled" />
+                                                 OnCancelCallback="@FormCancelled"
+                                                 OnSubmitCallBack="@FormSubmitted" />
     }
 </div>
 

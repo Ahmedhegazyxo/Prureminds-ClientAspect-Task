@@ -2,6 +2,11 @@
 @using Pureminds.Client.Components
 <nav class="flex items-center h-[60px] w-full px-4 py-6 z-[1000]">
     <div class="flex-1 flex items-center px-4 md:justify-start">
+        <div class="mr-4">
+            <button class="rounded-md bg-gray-200 flex flex-col gap-1 md:hidden px-4" @onclick="ToggleNav">
+                <i class="fas fa-bars text-black text-2xl"></i>
+            </button>
+        </div>
         <a href="/">
             <img src="./assets/logos/pure-minds-logo.png" alt="logo" class="w-[100px] object-cover" />
         </a>
@@ -16,42 +21,67 @@
     </div>
 
     <div class="flex-1 flex items-center justify-end gap-2">
-        <button class="text-sm">
-            [AR]
-        </button>
+        <button class="text-sm">[AR]</button>
         <button>
             <img src="./assets/symbols/Component 13 – 23.png" alt="logo" class="h-[24px] w-[24px]" />
         </button>
-        <a onclick="@NavigateToStartAProject" class="hidden md:flex items-center bg-gray-800 hover:bg-gray-700 text-white p-1 px-2 rounded hover:-translate-x-2 transition-all ease-linear">
-            <span class="hidden lg:block mr-2">
-                Start a project
-            </span>
+        <a onclick="@NavigateToStartAProject" class="md:flex items-center bg-gray-800 hover:bg-gray-700 text-white p-1 px-2 rounded hover:-translate-x-2 transition-all ease-linear cursor-pointer">
+            <span class="hidden lg:block mr-2">Start a project</span>
             <span>
                 <i class="fas fa-plus"></i>
             </span>
         </a>
-    </div>
-    <div class="hidden">
 
-        @* here triger ur function  *@
-        <button class="rounded-md bg-red-500 flex flex-col gap-2 md:hidden">
-            <div class="h-2 bg-black w-full" />
-            <div class="h-2 bg-black w-full" />
-            <div class="h-2 bg-black w-full" />
-        </button>
-        @* make the left equal 0 after clik left-0 *@
-        <div class="items-center justify-start flex flex-col md:hidden fixed h-full bg-red-500 top-0 left-0 hover:-left-[300vw] w-1/2 gap-3
-    transition-all w-full p-3 pt-20">
-            <button class="rounded-md border absolute top-4 right-4">
-                close
-            </button>
-            <a class="bg-white/10 text-base w-full font-medium hover:mb-4 block transition-all ease-linear p-1 px-2 rounded" href="services">Services</a>
-            <a class="bg-white/10 text-base w-full font-medium hover:mb-4 block transition-all ease-linear p-1 px-2 rounded" href="#projects">Work</a>
-            <a class="bg-white/10 text-base w-full font-medium hover:mb-4 block transition-all ease-linear p-1 px-2 rounded" href="about">About</a>
-        </div>
+
     </div>
+
+    @if (isNavOpen)
+    {
+        <div class="fixed top-0 left-0 h-full w-64 z-[999] flex flex-col items-start bg-[#00152A] text-white p-6 shadow-lg md:hidden transform translate-x-0 transition-transform duration-500 ease-in-out">
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-white" @onclick="ToggleNav">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="w-full bg-[#02021C] p-4 rounded-lg shadow-xl space-y-4 overflow-y-auto max-h-full mt-4">
+                <a class="flex items-center text-lg font-medium hover:bg-gray-700 transition-all ease-linear p-3 rounded-lg" href="/">
+                    <i class="fas fa-home mr-2"></i> Home
+                </a>
+
+                <a class="flex items-center text-lg font-medium hover:bg-gray-700 transition-all ease-linear p-3 rounded-lg" href="services">
+                    <i class="fas fa-cogs mr-2"></i> Services
+                </a>
+                <a class="flex items-center text-lg font-medium hover:bg-gray-700 transition-all ease-linear p-3 rounded-lg" href="projects">
+                    <i class="fas fa-briefcase mr-2"></i> Work
+                </a>
+                <a class="flex items-center text-lg font-medium hover:bg-gray-700 transition-all ease-linear p-3 rounded-lg" href="about">
+                    <i class="fas fa-info-circle mr-2"></i> About
+                </a>
+                <a class="flex items-center text-lg font-medium hover:bg-gray-700 transition-all ease-linear p-3 rounded-lg" href="ProductsGrid">
+                    <i class="fas fa-box mr-2"></i> Products
+                </a>
+                <a class="flex items-center text-lg font-medium hover:bg-gray-700 transition-all ease-linear p-3 rounded-lg" href="ProjectSubmissions">
+                    <i class="fas fa-paper-plane mr-2"></i> Projects
+                </a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="fixed top-0 left-0 h-full w-64 z-[999] flex flex-col items-start bg-[#00152A] text-white p-6 shadow-lg md:hidden transform -translate-x-full transition-transform duration-500 ease-in-out">
+        </div>
+    }
+
+
+
+
+
 </nav>
 
 @code {
+    private bool isNavOpen = false;
 
+    private void ToggleNav()
+    {
+        isNavOpen = !isNavOpen;
+    }
 }

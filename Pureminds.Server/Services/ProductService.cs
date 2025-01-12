@@ -16,12 +16,23 @@ public class ProductService : BaseService<Product>, IProductService
         {
             var products = await _context.Set<Product>()
                 .Include(e => e.ProductAttachments)
-                .ThenInclude(e => e.Attachment)
+                .ThenInclude(e => e.Attachment).Where(e=>e.IsPrioritized)
                 .ToListAsync();
 
             return products;
         }
         catch (Exception exception)
+        {
+            throw exception;
+        }
+    }
+    public async Task<List<Product>> GetPrioritizedProducts()
+    {
+        try
+        {
+            return await _context.Set<Product>().Where(e => e.IsPrioritized).ToListAsync(); 
+        }
+        catch(Exception exception)
         {
             throw exception;
         }
@@ -72,6 +83,51 @@ public class ProductService : BaseService<Product>, IProductService
         catch (Exception exception)
         {
             await transaction.RollbackAsync();
+            throw exception;
+        }
+    }
+    public override async Task<Product> Update(Product entity)
+    {
+        var transaction = _context.Database.BeginTransaction();
+        try
+        {
+            if (entity.ProductAttachments is not null && entity.ProductAttachments.Count() != 0)
+            {
+                await Task.Run(async () =>
+                {
+                    entity.ProductAttachments.ForEach(e => e.ProductId = entity.Id);
+                    _context.Set<ProductAttachment>().UpdateRange(entity.ProductAttachments);
+                });
+                entity.ProductAttachments = null;
+                entity = await base.Update(entity);
+            }
+            else
+            {
+                entity.ProductAttachments = null;
+                entity = await base.Update(entity);
+            }
+            if (transaction is not null)
+            {
+                await transaction.CommitAsync();
+            }
+        }
+        catch (Exception exception)
+        {
+            await transaction.RollbackAsync();
+            throw exception;
+        }
+        
+        return entity;
+    }
+
+    public async Task<Product> GetProductWithAttachments(int id)
+    {
+        try
+        {
+            return await _context.Set<Product>().Include(e=>e.ProductAttachments).ThenInclude(e=>e.Attachment).FirstOrDefaultAsync(e => e.Id == id);
+        }
+        catch(Exception exception)
+        {
             throw exception;
         }
     }

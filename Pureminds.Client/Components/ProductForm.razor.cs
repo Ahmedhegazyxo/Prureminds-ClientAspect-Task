@@ -7,15 +7,17 @@ public partial class ProductForm
 {
     [Parameter] public Product Source { get; set; } = new();
     [Parameter] public EventCallback OnCancelCallback { get; set; }
+    [Parameter] public EventCallback OnSubmitCallBack { get; set; }
     [Parameter] public string Title { get; set; } = "Edit Product";
     [Parameter] public OperationType OperationType { get; set; } = OperationType.Info;
     private bool isDisabled = false;
     private bool isFormLoaded = false;
+    private bool isFormSubmitted = false;
     protected override async Task OnParametersSetAsync()
     {
         if (OperationType == OperationType.Delete || OperationType == OperationType.Delete)
             isDisabled = true;
-        if(OperationType == OperationType.Add)
+        if (OperationType == OperationType.Add)
         {
             Source.ProductAttachments = new List<ProductAttachment>();
             Source.ProductAttachments.Add(new ProductAttachment
@@ -28,8 +30,8 @@ public partial class ProductForm
         }
         else if (OperationType == OperationType.Edit)
         {
-            Source = await _client.GetFromJsonAsync<Product>($"api/products/GetById/{Source.Id}");
-            if(Source.ProductAttachments is null || Source.ProductAttachments.Count() == 0)
+            Source = await _client.GetFromJsonAsync<Product>($"api/products/GetProductWithAttachments/{Source.Id}");
+            if (Source.ProductAttachments is null || Source.ProductAttachments.Count() == 0)
             {
                 Source.ProductAttachments = new List<ProductAttachment>();
                 Source.ProductAttachments.Add(new ProductAttachment
@@ -44,7 +46,7 @@ public partial class ProductForm
         isFormLoaded = true;
         await base.OnParametersSetAsync();
     }
-    private async Task HandleFileUpload(InputFileChangeEventArgs e , int indexInProductAttachments)
+    private async Task HandleFileUpload(InputFileChangeEventArgs e, int indexInProductAttachments)
     {
         try
         {
@@ -91,21 +93,30 @@ public partial class ProductForm
 
     private async Task OnValidSubmit()
     {
+        isFormSubmitted = true;
         try
         {
+            HttpResponseMessage responseMessage = new();
             if (OperationType == OperationType.Add)
             {
-                await _client.PostAsJsonAsync<Product>("api/products", Source);
+                responseMessage = await _client.PostAsJsonAsync<Product>("api/products", Source);
             }
             else if (OperationType == OperationType.Edit)
             {
-                await _client.PutAsJsonAsync<Product>("api/products", Source);
+                responseMessage = await _client.PutAsJsonAsync<Product>("api/products", Source);
             }
-            await OnCancelCallback.InvokeAsync();
+            if (responseMessage.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                await OnSubmitCallBack.InvokeAsync();
+            }
         }
         catch (Exception exception)
         {
             Console.WriteLine(exception.Message);
+        }
+        finally
+        {
+            isFormSubmitted = false;
         }
     }
 
@@ -113,6 +124,6 @@ public partial class ProductForm
     {
         await OnCancelCallback.InvokeAsync();
     }
-   
+
 }
 
