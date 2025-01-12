@@ -43,7 +43,7 @@
                 </div>
                 @if (Source.ProductAttachments is not null)
                 {
-                    <div class="bg-gray-500 rounded-lg p-2">
+                    <div class="bg-gray-500 rounded-lg p-4">
                         <div class="flex gap-2 justify-between p-2">
                             <label for="notes" class="block text-base font-bold text-white ">@Source.ProductAttachments.First().Attachment.AttachmentAttribute</label>
                             <InputFile accept=".jpg,.jpeg,.png,.pdf" id="attachment2" class="form-control" OnChange="@(e => HandleFileUpload(e , 0))" />
