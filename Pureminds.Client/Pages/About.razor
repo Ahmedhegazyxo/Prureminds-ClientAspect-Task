@@ -51,9 +51,9 @@
             <div class="mt-20 even:mt-10 flex gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
                 @foreach (Employee employee in employees)
                 {
-                    <div class="relative p-4 rounded-lg overflow-hidden w-[300px] h-[400px] hover:scale-105 transition-all ease-linear">
+                    <div class="relative p-4 rounded-lg overflow-hidden w-[300px] h-[400px] bg-gradient-to-b from-[#00152A] to-[#00152A] hover:scale-105 transition-all ease-linear">
                         <img src="@employee.Notes" alt="Card 2" class="w-full rounded-lg">
-                        <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/70 to-transparent">
+                        <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/50 to-transparent">
                             <div class=" flex flex-col mt-2 space-x-2 justify-start">
                                 <p class="font-bold">@employee.Name</p>
                                 <p>@employee.JobDescription</p>
